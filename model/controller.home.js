@@ -7,11 +7,13 @@ App.controller("home",
 				}
 			});
 			
-			function ref(){
+			function ref(p){
+				if(!p){p=1};
 				var w = plus.nativeUI.showWaiting("正在更新内容, 请稍后...");
+				
 				$.ajax({
 							type: 'GET',
-							url: 'http://'+service+'/api/get_recent_posts',
+							url: 'http://'+localStorage.service+'/api/get_recent_posts/?page='+p,
 							dataType: 'json',
 							timeout: 20000,
 							context: $('body'),
@@ -23,6 +25,7 @@ App.controller("home",
 									+i
 									+">";
 									if(data.posts[i].attachments[0]){
+										//console.log(data.posts[i].attachments[0].images["thumbnail"].url);
 										compound+="<div style='float: left;width:50px;height:50px;background:url(\""+data.posts[i].attachments[0].images["thumbnail"].url+"\");background-size:100% 100%;'></div><div style='margin-left:60px;margin-top:-1px;'>";
 									}
 									
@@ -34,13 +37,26 @@ App.controller("home",
 									+without(data.posts[i].content).substr(0,30)
 									+"...</div><div style='clear: both;'></div></div>";
 								}
-								localStorage["postarr"]=JSON.stringify(postarr);
-								localStorage["compound"]=compound;
 								$(page).find(".postsList").html(compound);
 								$(page).find('.listClick').on('click',function(){
 									App.load("view",{id:this.id,obj:postarr});
 								});
-								localStorage["dataDate"]=new Date().format("ymd");
+								loaded=true;
+								dataDate=new Date().format("ymd");
+								pN=p;
+								if(data.count<data.count_total&&data.count==10){
+									$(page).find(".loadmore").show();
+									if(pN>=2){
+										$(page).find(".loadless").show();
+										$(page).find(".loadless").css("width","50%");
+									}else{
+										$(page).find(".loadless").hide();
+									}
+								}else{
+									$(page).find(".loadless").show();
+									$(page).find(".loadless").css("width","100%");
+									$(page).find(".loadmore").hide();
+								}
 								w.close();
 								plus.nativeUI.toast("数据加载成功");
 							},
@@ -52,17 +68,10 @@ App.controller("home",
 			}
 			
 			$(page).on('appShow', function () {
-    			if(!localStorage["postarr"]){
+    			if(!loaded){
 					ref();
-				}else if(new Date().format("ymd")>localStorage.dataDate){
+				}else if(new Date().format("ymd")>dataDate){
 					ref();
-				}else{
-					postarr=JSON.parse(localStorage["postarr"]);
-					var compound=localStorage["compound"];
-					$(page).find(".postsList").html(compound);
-					$(page).find('.listClick').on('click',function(){
-						App.load("view",{id:this.id,obj:postarr});
-					});
 				}
   			});
 			
@@ -93,6 +102,10 @@ App.controller("home",
 					});
 				}else if(this.id=="refresh"){
 					ref();
+				}else if(this.id=="loadmore"){
+					ref(pN+1);
+				}else if(this.id=="loadless"){
+					ref(pN-1);
 				}
 			});
 			

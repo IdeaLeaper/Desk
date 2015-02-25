@@ -1,10 +1,11 @@
 					App.controller('center', function (page) {
 							$(page).find(".myname").text(localStorage.username);
+							$(page).find(".area").text(localStorage.area);
 							if(!localStorage.useremail){
 							var w = plus.nativeUI.showWaiting("正在加载个人信息...");
 				$.ajax({
 							type: 'GET',
-							url: 'http://'+service+'/api/user/get_currentuserinfo/?cookie='+localStorage.cookie,
+							url: 'http://'+localStorage.service+'/api/user/get_currentuserinfo/?cookie='+localStorage.cookie,
 							dataType: 'json',
 							timeout: 20000,
 							context: $('body'),
@@ -33,10 +34,44 @@
 									localStorage.removeItem("username");
 									localStorage.removeItem("useremail");
 									localStorage.removeItem("userregtime");
-									localStorage.removeItem("compound");
-									localStorage.removeItem("postarr");
+									loaded=false;
 									App.load('index');
 									App.removeFromStack(0,2);
+								}else if(this.id == "exarea"){
+									plus.nativeUI.actionSheet({
+										title: "请选择地区, 切换后您将被登出.",
+										cancel: "取消",
+										buttons: [{
+											title: "中国大陆地区"
+										},
+										{
+											title: "国际地区"
+										}]
+									},
+									function(e) {
+										if (e.index == 1){
+											localStorage["area"]="中国大陆地区";
+											localStorage["service"]="skypt.cn";
+											localStorage.removeItem("cookie");
+											localStorage.removeItem("username");
+											localStorage.removeItem("useremail");
+											localStorage.removeItem("userregtime");
+											loaded=false;
+											App.load('index');
+											App.removeFromStack(0,2);
+										}
+										else if (e.index == 2) {
+											localStorage["area"]="国际地区";
+											localStorage["service"]="us.skypt.cn";
+											localStorage.removeItem("cookie");
+											localStorage.removeItem("username");
+											localStorage.removeItem("useremail");
+											localStorage.removeItem("userregtime");
+											loaded=false;
+											App.load('index');
+											App.removeFromStack(0,2);
+										}
+									});
 								}
 							});
 						});

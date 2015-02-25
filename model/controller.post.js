@@ -104,14 +104,14 @@ App.controller('post',
 							return 0;
 						}
 						var w = plus.nativeUI.showWaiting("正在发布...");
-						var task = plus.uploader.createUpload( 'http://'+service+'/api/posts/create_post/', 
+						var task = plus.uploader.createUpload('http://'+localStorage.service+'/api/posts/create_post/', 
 										{ method:"POST",blocksize:204800,priority:100 },
 										function ( t, status ) {
 											if ( status == 200 ) { 
 												w.close();
 												plus.nativeUI.toast("发布成功");
 												console.log( "Upload success: " + t.responseText );
-												localStorage.removeItem("postarr");
+												loaded=false;
 												App.back();
 											} else {
 												w.close();

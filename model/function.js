@@ -1,6 +1,9 @@
 var postarr;
 var searcharr;
-var service="skypt.cn";
+var pN=0;
+var spN=0;
+var loaded=false;
+var dataDate;
 
 Date.prototype.format = function(partten)
         {

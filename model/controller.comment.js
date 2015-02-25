@@ -6,7 +6,7 @@ App.controller('comment',
 				var w = plus.nativeUI.showWaiting("正在加载评论...");
 				$.ajax({
 								type: 'GET',
-								url: 'http://'+service+'/api/get_post/?id='+argv.obj.posts[argv.id].id,
+								url: 'http://'+localStorage.service+'/api/get_post/?id='+argv.obj.posts[argv.id].id,
 								dataType: 'json',
 								timeout: 20000,
 								context: $('body'),
@@ -35,18 +35,13 @@ App.controller('comment',
 			
 			$(page).find(".app-button").on("click",function(){
 				if(this.id == "send"){
-					var content=$(page).find(".w-content").attr("value");
-					if(content.trim()!=""){
+					var wcontent=$(page).find(".w-content").attr("value");
+					if(wcontent.trim()!=""){
 						var w = plus.nativeUI.showWaiting("正在发布评论...");
 						$.ajax({
-								type: 'GET',
-								url: 'http://'+service+'/api/submit_comment/?post_id='
-								+argv.obj.posts[argv.id].id
-								+"&content="
-								+content
-								+"&name=auto&email=auto@auto.com"
-								+"&cookie="
-								+localStorage.cookie,
+								type: 'POST',
+								url: 'http://'+localStorage.service+'/api/submit_comment/',
+								data:{post_id:argv.obj.posts[argv.id].id,content:wcontent,name:"auto",email:"auto@auto.com",cookie:localStorage.cookie},
 								dataType: 'json',
 								timeout: 20000,
 								context: $('body'),

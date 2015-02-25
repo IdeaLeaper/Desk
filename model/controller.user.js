@@ -6,10 +6,10 @@ App.controller('login',
 					var w = plus.nativeUI.showWaiting("正在验证, 请稍后...");
 					var username = encodeURIComponent($("#login_username").attr("value"));
 					var password = encodeURIComponent($("#login_password").attr("value"));
-
+					
 					$.ajax({
 						type: 'GET',
-						url: 'http://'+service+'/api/user/generate_auth_cookie/?username=' + username + "&password=" + password,
+						url: 'http://'+localStorage.service+'/api/user/generate_auth_cookie/?username=' + username + "&password=" + password,
 						dataType: 'json',
 						timeout: 10000,
 						context: $('body'),
@@ -45,11 +45,10 @@ App.controller('reg',
 					var pw = encodeURIComponent($("#reg_pw").attr("value"));
 					var pw2 = encodeURIComponent($("#reg_pw2").attr("value"));
 					if (pw == pw2) {
-						console.log(pw);
 						var w = plus.nativeUI.showWaiting("正在注册...");
 								$.ajax({
 									type: 'GET',
-									url: 'http://'+service+'/api/user/register/?username=' + username + "&email=" + email + "&display_name=" + username + "&user_pass=" + pw,
+									url: 'http://'+localStorage.service+'/api/user/register/?username=' + username + "&email=" + email + "&display_name=" + username + "&user_pass=" + pw,
 									dataType: 'json',
 									timeout: 10000,
 									context: $('body'),

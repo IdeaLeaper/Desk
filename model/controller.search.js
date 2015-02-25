@@ -1,10 +1,13 @@
 App.controller("search",
 		function(page,argv) {
 			$(page).find(".w-text").text(argv.text);
+				ref();
+				function ref(p){
+					if(!p){p=1};
 				var w = plus.nativeUI.showWaiting("正在更新内容, 请稍后...");
 				$.ajax({
 							type: 'GET',
-							url: 'http://'+service+'/api/get_search_results/?search='+encodeURIComponent(argv.text),
+							url: 'http://'+localStorage.service+'/api/get_search_results/?search='+encodeURIComponent(argv.text)+"&page="+p,
 							dataType: 'json',
 							timeout: 20000,
 							context: $('body'),
@@ -35,6 +38,20 @@ App.controller("search",
 								$(page).find('.listClick').on('click',function(){
 									App.load("view",{id:this.id,obj:searcharr});
 								});
+								spN=p;
+								if(data.count<data.count_total&&data.count==10){
+									$(page).find(".loadmore").show();
+									if(spN>=2){
+										$(page).find(".loadless").show();
+										$(page).find(".loadless").css("width","50%");
+									}else{
+										$(page).find(".loadless").hide();
+									}
+								}else if(data.count!=data.count_total){
+									$(page).find(".loadless").show();
+									$(page).find(".loadless").css("width","100%");
+									$(page).find(".loadmore").hide();
+								}
 								w.close();
 								plus.nativeUI.toast("数据加载成功");
 							},
@@ -43,4 +60,15 @@ App.controller("search",
 								plus.nativeUI.toast("网络错误");
 							}
 						});
+						}
+						
+						$(page).find('.app-button').on('click',
+			function() {
+				if(this.id=="loadmore"){
+					ref(spN+1);
+				}else if(this.id=="loadless"){
+					ref(spN-1);
+				}
+			});
+						
 });

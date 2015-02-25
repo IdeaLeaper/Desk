@@ -2,9 +2,9 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-		/>
-		<link rel="stylesheet" href="appjs/app.min.css">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<link rel="stylesheet" href="appjs/css/base.css">
+		<link rel="stylesheet" href="appjs/css/app.css">
 		<link rel="stylesheet" href="fas/css/font-awesome.min.css">
 		<title>
 			Desk
@@ -16,13 +16,44 @@
 		</style>
 	</head>
 	<body>
+		
+		<div class="app-page" data-page="ac">
+			<div class="app-topbar">
+				<div class="app-title">
+					课桌区域设置
+				</div>
+			</div>
+			<div class="app-content">
+				<div class="app-section">
+				<center>在使用课桌之前, 请先设置您的所在区域,我们将根据您的区域信息为您提供网络加速</center>
+				</div>
+				<div class="app-section">
+					<div class="app-button" id="cn">
+						中国大陆地区
+					</div>
+					<div class="app-button" id="international">
+						国际地区
+					</div>
+				</div>
+				<div class="app-section">
+					选择国际地区将启用全球加速服务, 但课桌将保留不提供仅限中国大陆地区使用的服务的权利. 
+					如果您在中国大陆地区, 请不要选择国际地区. 您也可以在登陆注册后进入我的中心修改区域.
+				</div>
+					<center>
+						<i class="fa fa-cloud"></i>&nbsp;&nbsp;Idea Leaper Technology
+					</center>
+			</div>
+		</div>
+		
+		
+		
 		<div class="app-page" data-page="index">
 			<div class="app-topbar">
 				<div class="app-title">
 					欢迎来到课桌
 				</div>
 				<div class="app-button right" data-target="about">
-					关于
+					&nbsp;<i class="fa fa-info fa-lg"></i>&nbsp;
 				</div>
 			</div>
 			<div class="app-content">
@@ -34,10 +65,10 @@
 				</div>
 				<div class="app-section">
 					<div class="app-button" data-target="login">
-						<i class="fa fa-sign-in fa-lg"></i>&nbsp;&nbsp;登陆课桌
+						<i class="fa fa-globe fa-lg"></i>&nbsp;&nbsp;登陆课桌
 					</div>
 					<div class="app-button" data-target="reg">
-						<i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;注册账号
+						<i class="fa fa-plus-square fa-lg"></i>&nbsp;&nbsp;注册账号
 					</div>
 				</div>
 					<center>
@@ -83,6 +114,10 @@
 			</div>
 			<div class="app-content">
 				<div class="postsList"></div>
+				<div>
+					<div style="float:left;width:50%;display:none;" class="app-button loadless" id="loadless">较新的内容</div>
+					<div style="display:none;" class="app-button loadmore" id="loadmore">更早的内容</div>
+				</div>
 			</div>
 		</div>
 		
@@ -90,13 +125,13 @@
 		<div class="app-page" data-page="home">
 			<div class="app-topbar">
 				<div class="app-button left"  id="refresh">
-					&nbsp;<i  class="fa fa-rocket fa-lg"></i>&nbsp;
+					<i  class="fa fa-rocket fa-lg"></i>
 				</div>
 				<div class="app-title">
 					课桌
 				</div>
 				<div class="app-button right"  id="new">
-					&nbsp;<i  class="fa fa-tasks fa-lg"></i>&nbsp;
+					<i  class="fa fa-tasks fa-lg"></i>
 				</div>
 			</div>
 			<div class="app-content">
@@ -107,6 +142,10 @@
 				</div>
 				
 				<div class="postsList"></div>
+				<div>
+					<div style="float:left;width:50%;display:none;" class="app-button loadless" id="loadless">较新的内容</div>
+					<div style="display:none;" class="app-button loadmore" id="loadmore">更早的内容</div>
+				</div>
 			</div>
 		</div>
 		
@@ -126,17 +165,19 @@
 		    <div class="left app-button" data-back>返回</div>
 		    <div class="app-title">我的中心</div>
 		    <div class="app-button right" data-target="about">
-					关于
-				</div>
+					&nbsp;<i class="fa fa-info fa-lg"></i>&nbsp;
+			</div>
 		  </div>
 		  <div class="app-content" >
 		  	<div class="app-section">
 		  		<h2 class="myname"></h2>
 		  		E-mail:  <label class="myemail"></label><br>
-		  		注册时间:  <label class="myregtime"></label>
+		  		注册时间:  <label class="myregtime"></label><br>
+		  		区域:  <label class="area"></label>
 		  	</div>
 		  	<div class="app-section">
 		  		<div class="app-button"><i class="fa fa-key fa-lg"></i>&nbsp;&nbsp;更改密码</div>
+		  		<div class="app-button" id="exarea"><i class="fa fa-exchange fa-lg"></i>&nbsp;&nbsp;切换区域</div>
 		  		<div class="app-button" id="logout"><i class="fa fa-sign-out fa-lg"></i>&nbsp;&nbsp;登出账户</div>
 		  	</div>
 		  	<div class="app-section">
@@ -156,7 +197,7 @@
 					文档标题
 				</div>
 				<div class="app-button right" id="comment">
-					&nbsp;<i  class="fa fa-comments fa-lg"></i>&nbsp;
+					<i  class="fa fa-comments fa-lg"></i>
 				</div>
 			</div>
 			<div class="app-content">
@@ -212,7 +253,7 @@
 					发布新百科
 				</div>
 				<div class="app-button right" id="post">
-					&nbsp;<i  class="fa fa-pencil fa-lg"></i>&nbsp;
+					<i  class="fa fa-pencil fa-lg"></i>
 				</div>
 			</div>
 			<div class="app-content">
@@ -253,7 +294,7 @@
 				</div>
 				<div class="app-section">
 					<div class="app-button" id="login_btnLogin">
-						<i class="fa fa-sign-in fa-lg"></i>&nbsp;&nbsp;登陆
+						<i class="fa fa-globe fa-lg"></i>&nbsp;&nbsp;登陆
 					</div>
 				</div>
 					<center>
@@ -291,7 +332,7 @@
 				</div>
 				<div class="app-section">
 					<div class="app-button" id="reg_btnReg">
-						<i class="fa fa-user-plus fa-lg"></i>&nbsp;&nbsp;立即注册
+						<i class="fa fa-plus-square fa-lg"></i>&nbsp;&nbsp;立即注册
 					</div>
 				</div>
 					<center>
@@ -302,9 +343,26 @@
 	
 	
 	</body>
-	<script src="appjs/zepto.js"></script>
-	<script src="appjs/app.min.js"></script>
+	<script src="appjs/js/zepto.js"></script>
+	<script src="appjs/js/lib/clickable.js"></script>
+	<script src="appjs/js/lib/scrollable.js"></script>
+	<script src="appjs/js/lib/swapper.js"></script>
+	<script src="appjs/js/app.js"></script>
+	<script src="appjs/js/utils.js"></script>
+	<script src="appjs/js/android-touch-fix.js"></script>
+	<script src="appjs/js/dialog.js"></script>
+	<script src="appjs/js/events.js"></script>
+	<script src="appjs/js/form.js"></script>
+	<script src="appjs/js/metrics.js"></script>
+	<script src="appjs/js/transitions.js"></script>
+	<script src="appjs/js/scroll-fix.js"></script>
+	<script src="appjs/js/scroll.js"></script>
+	<script src="appjs/js/pages.js"></script>
+	<script src="appjs/js/stack.js"></script>
+	<script src="appjs/js/navigation.js"></script>
+
 	<script src="model/function.js"></script>
+	<script src="model/controller.ac.js"></script>
 	<script src="model/controller.comment.js"></script>
 	<script src="model/controller.view.js"></script>
 	<script src="model/controller.user.js"></script>
