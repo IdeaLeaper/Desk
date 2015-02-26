@@ -22,7 +22,7 @@ Date.prototype.format = function(partten)
 
 function without(str)   
 {   
-	return str.replace(/<\/?.+?>/g,"");; 
+	return str.replace(/<\/?.+?>/g,"");
 }
 
 function within(sHtml) {
@@ -43,4 +43,4 @@ var loaderImg = [
 		"ibufbSlKAAAh+QQACgAGACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFG",
 		"xTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAAKAAcALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdce",
 		"CAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==",
-	].join('');
+].join('');

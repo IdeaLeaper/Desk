@@ -49,10 +49,6 @@
 	padding-left: 60px;
 }
 
-..app-topbar .app-button {
-	padding: 0 13px;
-	font-weight: 600;
-}
 
 .app-topbar .app-button.active {
 	opacity: 1;

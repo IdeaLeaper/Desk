@@ -1,0 +1,26 @@
+/* 提供一组淡入的动画系统 */
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1; 
+	}
+}
+
+.fade-show{
+	-webkit-animation-name: fadeIn;
+	-webkit-animation-duration: 0.3s;
+	-webkit-animation-iteration-count: 1;
+	-webkit-animation-delay: 0s;
+}
+
+/* 修正水平线 */
+hr{
+	height:1px;
+	border:none;
+	border-top:1px solid #D8D8D8;
+}
