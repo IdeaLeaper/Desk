@@ -62,7 +62,7 @@
 										}
 										else if (e.index == 2) {
 											localStorage["area"]="国际地区";
-											localStorage["service"]="skypt.cn";
+											localStorage["service"]="us.skypt.cn";
 											localStorage.removeItem("cookie");
 											localStorage.removeItem("username");
 											localStorage.removeItem("useremail");

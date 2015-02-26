@@ -5,9 +5,9 @@
 									localStorage["service"]="skypt.cn";
 									App.load("index");
 									App.removeFromStack(0,1);
-								}else if(this.id == "international"){
-									localStorage["area"]="国际地区";
-									localStorage["service"]="skypt.cn";
+								}else if(this.id == "国际地区"){
+									localStorage["area"]="international";
+									localStorage["service"]="us.skypt.cn";
 									App.load("index");
 									App.removeFromStack(0,1);
 								}

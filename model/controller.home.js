@@ -1,12 +1,11 @@
 App.controller("home",
 		function(page) {
 			
-			$(page).find(".app-content").dropload().on('dropload',function(e,me){
-		ref();
-		setTimeout(function(){
-        me.resetload();
-      },600);
-});
+			document.addEventListener( "resume", function(){
+				if(new Date().format("ymd")>localStorage.dataDate){
+					ref();
+				}
+			});
 			
 			function ref(p){
 				if(!p){p=1};

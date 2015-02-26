@@ -283,8 +283,8 @@ textarea.app-input {
 	border-top: 1px solid #FFF;
 	-webkit-border-radius: 8px;
 	border-radius: 8px;
-	/*-webkit-box-shadow: 0 0 10px rgba(0,0,0,0.6);
-	box-shadow: 0 0 10px rgba(0,0,0,0.6);*/
+	-webkit-box-shadow: 0 0 8px rgba(0,0,0,0.5);
+	box-shadow: 0 0 8px rgba(0,0,0,0.5);
 	color: #777;
 	overflow: hidden;
 	-webkit-transform: translate3d(0,380px,0);
@@ -297,10 +297,14 @@ textarea.app-input {
 		width: 70%;
 	}
 }
+.app-dialog {
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+}
 
 .app-dialog-container.enabled .app-dialog {
-	-webkit-transform: translate3d(0,-80%,0);
-	transform: translate3d(0,-80%,0);
+	-webkit-transform: translate3d(0,-50%,0);
+	transform: translate3d(0,-50%,0);
 }
 
 
@@ -313,7 +317,7 @@ textarea.app-input {
 	text-align: center;
 }
 .app-dialog .text {
-	margin: 12px 0;
+	margin: 20px 0;
 	padding: 0 20px 8px;
 	font-size: 16px;
 	font-weight: 400;
@@ -323,10 +327,12 @@ textarea.app-input {
 	float: right;
 	height: 44px;
 	width: 50%;
-	font-size: 18px;
+	font-size: 20px;
 	font-weight: 300;
 	line-height: 44px;
 	text-align: center;
+	-webkit-transition: opacity 0.25s ease-out;
+	transition: opacity 0.25s ease-out;
 }
 .app-dialog .button.cancel {
 	background-color: rgb(227,228,231);
@@ -345,6 +351,19 @@ textarea.app-input {
 .app-dialog .button.first.last {
 	width: 100%;
 }
+.app-ios .app-dialog .button.first {
+	-webkit-border-radius: 0 0 0 8px;
+	border-radius: 0 0 0 8px;
+}
+.app-ios .app-dialog .button.last {
+	-webkit-border-radius: 0 0 8px 0;
+	border-radius: 0 0 8px 0;
+}
+.app-ios .app-dialog .button.first.last {
+	width: 100%;
+	-webkit-border-radius: 0 0 8px 8px;
+	border-radius: 0 0 8px 8px;
+}
 .app-dialog .button.active {
-	opacity: 0.6;
+	opacity: 0.7;
 }
