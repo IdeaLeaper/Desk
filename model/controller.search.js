@@ -65,7 +65,6 @@ function(page, argv) {
 					$(page).find(".loadmore").show();
 				}
 				w.close();
-				plus.nativeUI.toast("数据加载成功");
 			},
 			error: function(xhr, type) {
 				w.close();

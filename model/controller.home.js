@@ -1,5 +1,23 @@
 App.controller("home",
-function(page) {	
+function(page) {
+	var el=0;
+	$(page).find(".app-content").on("touchmove",function(e){
+		console.log("el2:"+e.touches[0].pageY);
+		if(el<e.touches[0].pageY&&this.scrollTop==0){
+			$(page).find(".ref").show();
+			$(page).find(".ref").css("height","26px");
+			ref();
+			setTimeout(function(){
+				$(page).find(".ref").hide();
+				$(page).find(".ref").css("height","0px");
+			},600);
+		}
+	});
+	$(page).find(".app-content").on("touchstart",function(e){
+		el=e.touches[0].pageY;
+		console.log("el1:"+el);
+	});
+	
 	function ref(p, mode) {
 		if (!p) {
 			p = 1
@@ -63,7 +81,6 @@ function(page) {
 					$(page).find(".loadmore").show();
 				}
 				w.close();
-				plus.nativeUI.toast("数据加载成功");
 			},
 			error: function(xhr, type) {
 				w.close();

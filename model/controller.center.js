@@ -15,7 +15,6 @@ function(page) {
 					success: function(data) {
 						w.close();
 						$(page).find(".mycoin").text(data["wordpoints_points-coin"][0]);
-						plus.nativeUI.toast("信息加载成功");
 					},
 					error: function(xhr, type) {
 						w.close();
