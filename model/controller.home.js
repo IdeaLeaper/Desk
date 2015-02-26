@@ -37,7 +37,7 @@ App.controller("home",
 								loaded=true;
 								dataDate=new Date().format("ymd");
 								pN=p;
-								if(data.count*pN<data.count_total){
+								if(pN<data.pages){
 									$(page).find(".loadmore").show();
 									if(pN>=2){
 										$(page).find(".loadless").show();

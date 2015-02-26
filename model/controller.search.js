@@ -40,7 +40,7 @@ App.controller("search",
 									App.load("view",{id:this.id,obj:searcharr});
 								});
 								spN=p;
-								if(data.count<data.count_total&&data.count==10){
+								if(spN<data.pages){
 									$(page).find(".loadmore").show();
 									if(spN>=2){
 										$(page).find(".loadless").show();
