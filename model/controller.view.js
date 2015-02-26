@@ -23,9 +23,15 @@ App.controller('view',
 			});
 			
 			$(page).find(".image").on("click",function(){
-				App.load('viewer', {
-				  url:argv.obj.posts[argv.id].attachments[0].images["full"].url
-				});
+				if(argv.obj.posts[argv.id].attachments[0].images["large"]){
+					App.load('viewer', {
+					  url:argv.obj.posts[argv.id].attachments[0].images["large"].url
+					});
+				}else{
+					App.load('viewer', {
+					  url:argv.obj.posts[argv.id].attachments[0].images["full"].url
+					});
+				}
 			})
 });
 

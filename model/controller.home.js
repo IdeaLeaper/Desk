@@ -1,13 +1,5 @@
 App.controller("home",
 		function(page) {
-			
-			$(page).find(".app-content").dropload().on('dropload',function(e,me){
-		ref();
-		setTimeout(function(){
-        me.resetload();
-      },600);
-});
-			
 			function ref(p){
 				if(!p){p=1};
 				var w = plus.nativeUI.showWaiting("正在更新内容, 请稍后...");
@@ -16,6 +8,7 @@ App.controller("home",
 							type: 'GET',
 							url: 'http://'+localStorage.service+'/api/get_recent_posts/?page='+p,
 							dataType: 'json',
+							cache:false,
 							timeout: 20000,
 							context: $('body'),
 							success: function(data) {
@@ -26,7 +19,6 @@ App.controller("home",
 									+i
 									+">";
 									if(data.posts[i].attachments[0]){
-										//console.log(data.posts[i].attachments[0].images["thumbnail"].url);
 										compound+="<div style='float: left;width:50px;height:50px;background:url(\""+data.posts[i].attachments[0].images["thumbnail"].url+"\");background-size:100% 100%;'></div><div style='margin-left:60px;margin-top:-1px;'>";
 									}
 									

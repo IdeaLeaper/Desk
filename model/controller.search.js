@@ -9,6 +9,7 @@ App.controller("search",
 							type: 'GET',
 							url: 'http://'+localStorage.service+'/api/get_search_results/?search='+encodeURIComponent(argv.text)+"&page="+p,
 							dataType: 'json',
+							cache:false,
 							timeout: 20000,
 							context: $('body'),
 							success: function(data) {

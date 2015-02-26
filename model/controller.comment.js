@@ -8,6 +8,7 @@ App.controller('comment',
 								type: 'GET',
 								url: 'http://'+localStorage.service+'/api/get_post/?id='+argv.obj.posts[argv.id].id,
 								dataType: 'json',
+								cache:false,
 								timeout: 20000,
 								context: $('body'),
 								success: function(data) {
