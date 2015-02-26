@@ -44,7 +44,7 @@ App.controller("home",
 								loaded=true;
 								dataDate=new Date().format("ymd");
 								pN=p;
-								if(data.count<data.count_total&&data.count==10){
+								if(data.count*pN<data.count_total){
 									$(page).find(".loadmore").show();
 									if(pN>=2){
 										$(page).find(".loadless").show();
