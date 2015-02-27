@@ -2,8 +2,8 @@ App.controller('view',
 function(page, argv) {
 	var w = plus.nativeUI.showWaiting("正在获取内容...");
 	$(page).find('.app-title').text(argv.obj.posts[argv.id].title);
-	if (argv.obj.posts[argv.id].attachments[0]) {
-		var iturl = argv.obj.posts[argv.id].attachments[0].images["medium"].url;
+	if (argv.obj.posts[argv.id]["custom_fields"].image[0]) {
+		var iturl = argv.obj.posts[argv.id]["custom_fields"].image[0]+"?imageView2/0/w/200";
 		$(page).find('.image').attr('src', iturl);
 		$(page).find('.image').on("load",
 		function() {
@@ -44,15 +44,9 @@ function(page, argv) {
 
 	$(page).find(".image").on("click",
 	function() {
-		if (argv.obj.posts[argv.id].attachments[0].images["large"]) {
 			App.load('viewer', {
-				url: argv.obj.posts[argv.id].attachments[0].images["large"].url
+				url: argv.obj.posts[argv.id]["custom_fields"].image[0]+"?imageView2/4/w/600"
 			});
-		} else {
-			App.load('viewer', {
-				url: argv.obj.posts[argv.id].attachments[0].images["full"].url
-			});
-		}
 	})
 });
 

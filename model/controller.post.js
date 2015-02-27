@@ -107,37 +107,77 @@ function(page) {
 				plus.nativeUI.toast("缺少必填项");
 				return 0;
 			}
+			
 			var w = plus.nativeUI.showWaiting("正在发布...");
+			
+			
 			var task = plus.uploader.createUpload('http://' + localStorage.service + '/api/posts/create_post/', {
 				method: "POST",
 				blocksize: 204800,
 				priority: 100
-			},
-			function(t, status) {
-				if (status == 200) {
-					w.close();
-					plus.nativeUI.toast("发布成功");
-					console.log("Upload success: " + t.responseText);
-					loaded = false;
-					App.back();
-				} else {
-					w.close();
-					plus.nativeUI.toast("发布失败");
-					console.log("Upload failed: " + status);
-				}
+				},
+				function(t, status) {
+					if (status == 200) {
+						w.close();
+						console.log("Upload: " + t.responseText);
+						loaded=false;
+						App.back();
+					} else {
+						w.close();
+						plus.nativeUI.toast("发布失败");
+						alert("Upload failed: " + status);
+					}
 			});
-			if ($(page).find(".lookat").attr("src")) {
-				task.addFile($(page).find(".lookat").attr("src"), {
-					key: "attachment"
-				});
-			}
+			
+			var img = plus.uploader.createUpload('http://upload.qiniu.com/', {
+				method: "POST",
+				blocksize: 204800,
+				priority: 100
+				},
+				function(t, status) {
+					if (status == 200) {
+						alert("UploadImg: " + t.responseText);
+						var c=JSON.parse(t.responseText);
+						task.addData("image",c.url);
+						task.start();
+						
+					} else {
+						w.close();
+						plus.nativeUI.toast("发布失败");
+						alert("Upload failed: " + status);
+					}
+			});
+			
+			
 			task.addData("title", $(page).find(".w-title").attr("value"));
-			task.addData("title_plain", $(page).find(".w-title").attr("value"));
 			task.addData("content", within($(page).find(".w-content").attr("value")));
 			task.addData("categories", "['" + $(page).find(".w-cate").attr("title") + "']");
 			task.addData("cookie", localStorage["cookie"]);
 			task.addData("status", "publish");
-			task.start();
+			
+			if($(page).find(".lookat").attr("src").trim()!=""){
+				img.addFile($(page).find(".lookat").attr("src"),{key:"file"});
+				$.ajax({
+					type: 'GET',
+					url: 'http://' + localStorage.service + '/uptoken.php',
+					dataType: 'text',
+					cache:false,
+					timeout: 20000,
+					context: $('body'),
+					success: function(data) {
+						console.log(data);
+						img.addData("token",data);
+						img.start();
+					},
+					error: function(xhr, type) {
+						w.close();
+						plus.nativeUI.toast("网络错误");
+					}
+				});
+			}else{
+				task.start();
+			}
+			
 
 		}
 	});

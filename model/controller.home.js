@@ -2,7 +2,6 @@ App.controller("home",
 function(page) {
 	var el=0;
 	$(page).find(".app-content").on("touchmove",function(e){
-		console.log("el2:"+e.touches[0].pageY);
 		if(el<e.touches[0].pageY&&this.scrollTop==0){
 			$(page).find(".ref").show();
 			$(page).find(".ref").css("height","26px");
@@ -25,7 +24,7 @@ function(page) {
 		var w = plus.nativeUI.showWaiting("正在获取百科...");
 		$.ajax({
 			type: 'GET',
-			url: 'http://' + localStorage.service + '/api/get_recent_posts/?include=attachments,title,excerpt&page=' + p + "&china=" + localStorage.china,
+			url: 'http://' + localStorage.service + '/api/get_recent_posts/?include=custom_fields,attachments,title,excerpt&page=' + p + "&china=" + localStorage.china,
 			dataType: 'json',
 			cache: false,
 			timeout: 20000,
@@ -33,6 +32,7 @@ function(page) {
 			success: function(data) {
 				var compound = "";
 				for (var i = 0; i <= data.posts.length -1 ; i++) {
+					//console.log(JSON.stringify(data));
 					compound += "<div class='app-section listClick' id=";
 					if (mode == 1) {
 						compound += i + postarr.posts.length;
@@ -40,11 +40,11 @@ function(page) {
 						compound += i;
 					}
 					compound += ">";
-					if (data.posts[i].attachments[0]) {
-						compound += "<div style='float: left;width:50px;height:50px;background:url(\"" + data.posts[i].attachments[0].images["thumbnail"].url + "\");background-size:100% 100%;'></div><div style='margin-left:60px;margin-top:-1px;'>";
+					if (data.posts[i]["custom_fields"].image[0]) {
+						compound += "<div style='float: left;width:50px;height:50px;background:url(\"" + data.posts[i]["custom_fields"].image[0] + "?imageView2/1/w/50/h/50\");background-size:100% 100%;'></div><div style='margin-left:60px;margin-top:-1px;'>";
 					}
 					compound += "<b>" + without(data.posts[i].title);
-					if (data.posts[i].attachments[0]) {
+					if (data.posts[i]["custom_fields"].image[0]) {
 						compound += "&nbsp;&nbsp;<i class='fa fa-picture-o'></i>";
 					}
 					var wexc = without(data.posts[i].excerpt) + "...";
@@ -58,6 +58,7 @@ function(page) {
 					compound += "</div><div style='clear: both;'></div></div>";
 				}
 
+				
 				if (mode == 1) {
 					postarr.posts = postarr.posts.concat(data.posts);
 					$(page).find(".postsList").html($(page).find(".postsList").html() + compound);

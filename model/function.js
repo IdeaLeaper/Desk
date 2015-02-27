@@ -44,3 +44,12 @@ var loaderImg = [
 		"xTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAAKAAcALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdce",
 		"CAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==",
 ].join('');
+
+function getfilename(path){
+	var i=path.lastIndexOf('/');
+	if(i==-1){
+		return path;
+	}else{
+		return path.substr(i+1,path.length-i-1);
+	}
+}

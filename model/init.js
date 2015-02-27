@@ -5,8 +5,6 @@ if (window.plus) {
 }
 
 function plusReady() {
-
-	
 	localStorage["service"] = "skypt.cn";
 	plus.navigator.setStatusBarBackground("#045FB4");
 	plus.key.addEventListener("backbutton",
