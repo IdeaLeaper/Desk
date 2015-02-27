@@ -176,6 +176,7 @@ function(page) {
 					}
 				});
 			}else{
+				w.setTitle("正在发布百科...");
 				task.start();
 			}
 			
