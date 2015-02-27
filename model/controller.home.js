@@ -32,7 +32,6 @@ function(page) {
 			success: function(data) {
 				var compound = "";
 				for (var i = 0; i <= data.posts.length -1 ; i++) {
-					//console.log(JSON.stringify(data));
 					compound += "<div class='app-section listClick' id=";
 					if (mode == 1) {
 						compound += i + postarr.posts.length;

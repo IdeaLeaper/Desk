@@ -108,7 +108,7 @@ function(page) {
 				return 0;
 			}
 			
-			var w = plus.nativeUI.showWaiting("正在发布...");
+			var w = plus.nativeUI.showWaiting("正在准备...");
 			
 			
 			var task = plus.uploader.createUpload('http://' + localStorage.service + '/api/posts/create_post/', {
@@ -136,8 +136,8 @@ function(page) {
 				},
 				function(t, status) {
 					if (status == 200) {
-						alert("UploadImg: " + t.responseText);
 						var c=JSON.parse(t.responseText);
+						w.setTitle("正在发布百科...");
 						task.addData("image",c.url);
 						task.start();
 						
@@ -157,6 +157,7 @@ function(page) {
 			
 			if($(page).find(".lookat").attr("src").trim()!=""){
 				img.addFile($(page).find(".lookat").attr("src"),{key:"file"});
+				w.setTitle("正在获取授权...");
 				$.ajax({
 					type: 'GET',
 					url: 'http://' + localStorage.service + '/uptoken.php',
@@ -165,7 +166,7 @@ function(page) {
 					timeout: 20000,
 					context: $('body'),
 					success: function(data) {
-						console.log(data);
+						w.setTitle("正在上传图片...");
 						img.addData("token",data);
 						img.start();
 					},
