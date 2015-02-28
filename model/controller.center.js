@@ -4,7 +4,6 @@ function(page) {
 	$(page).find(".area").text(localStorage.area);
 	
 	function loadcoin(){
-		var w=plus.nativeUI.showWaiting("正在获取积分...");
 		$.ajax({
 					type: 'GET',
 					url: 'http://' + localStorage.service + '/api/user/get_user_meta/?meta_key=wordpoints_points-coin&cookie=' + localStorage.cookie,
@@ -13,11 +12,9 @@ function(page) {
 					timeout: 20000,
 					context: $('body'),
 					success: function(data) {
-						w.close();
 						$(page).find(".mycoin").text(data["wordpoints_points-coin"][0]);
 					},
 					error: function(xhr, type) {
-						w.close();
 						plus.nativeUI.toast("网络错误");
 					}
 		});
@@ -66,40 +63,6 @@ function(page) {
 			localStorage.clear();
 		} else if (this.id == "_cookie") {
 			console.log(localStorage.cookie);
-		} else if (this.id == "exarea") {
-			plus.nativeUI.actionSheet({
-				title: "请选择地区, 切换后您将被登出.",
-				cancel: "取消",
-				buttons: [{
-					title: "中国大陆地区"
-				},
-				{
-					title: "国际地区"
-				}]
-			},
-			function(e) {
-				if (e.index == 1) {
-					localStorage["area"] = "中国大陆地区";
-					localStorage["china"]=1;
-					localStorage.removeItem("cookie");
-					localStorage.removeItem("username");
-					localStorage.removeItem("useremail");
-					localStorage.removeItem("userregtime");
-					loaded = false;
-					App.load('index');
-					App.removeFromStack(0, 2);
-				} else if (e.index == 2) {
-					localStorage["area"] = "国际地区";
-					localStorage["china"]=0;
-					localStorage.removeItem("cookie");
-					localStorage.removeItem("username");
-					localStorage.removeItem("useremail");
-					localStorage.removeItem("userregtime");
-					loaded = false;
-					App.load('index');
-					App.removeFromStack(0, 2);
-				}
-			});
 		}
 	});
 });

@@ -95,8 +95,8 @@
 	padding: 8px;
 	background: #FFF;
 	border: 1px solid rgba(0,0,0,0.15);
-	-webkit-border-radius: 6px;
-	border-radius: 6px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 
 .app-section.app-button {
@@ -110,8 +110,8 @@ p.app-section {
 }
 .app-content .app-section > * {
 	margin: 8px 0 0;
-	-webkit-border-radius: 4px;
-	border-radius: 4px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
 }
 .app-content .app-section > :first-child {
 	margin-top: 0;

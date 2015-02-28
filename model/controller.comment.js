@@ -33,7 +33,7 @@ function(page, argv) {
 	$(page).find(".app-button").on("click",
 	function() {
 		if (this.id == "send") {
-			var wcontent = $(page).find(".w-content").attr("value");
+			var wcontent = $(page).find(".w-content").val();
 			if (wcontent.trim() != "") {
 				var w = plus.nativeUI.showWaiting("正在发布评论...");
 				$.ajax({
@@ -53,6 +53,7 @@ function(page, argv) {
 					success: function(data) {
 						w.close();
 						if (data.status == "ok") {
+							$(page).find(".w-content").val("");
 							plus.nativeUI.toast("发布成功");
 							ref();
 						} else {

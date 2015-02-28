@@ -1,23 +1,28 @@
 App.controller("search",
 function(page, argv) {
 	$(page).find(".w-text").text(argv.text);
-	ref();
-	function ref(p, mode) {
+	ref(1,0,argv.text);
+	function ref(p, mode, s) {
+		/* 处理没有指定页码的情况 */
 		if (!p) {
 			p = 1
 		};
 		var w = plus.nativeUI.showWaiting("正在获取百科...");
 		$.ajax({
 			type: 'GET',
-			url: 'http://' + localStorage.service + '/api/get_search_results/?include=custom_fields,title,excerpt&search=' + encodeURIComponent(argv.text) + "&page=" + p + "&china=" + localStorage.china,
+			url: 'http://' + localStorage.service + '/api/get_search_results/?include=custom_fields,title,excerpt&search=' + encodeURIComponent(s) + "&page=" + p + "&china=" + localStorage.china,
 			dataType: 'json',
 			cache: false,
 			timeout: 20000,
 			context: $('body'),
 			success: function(data) {
 				var compound = "";
+				
+				/* 组合页面元素 */
 				for (var i = 0; i <= data.posts.length -1 ; i++) {
 					compound += "<div class='app-section listClick' id=";
+					
+					/* 根据模式决定, 若刷新则以0开始, 若加载更多则以之前数组长度之后开始 */
 					if (mode == 1) {
 						compound += i + searcharr.posts.length;
 					} else {
@@ -41,8 +46,13 @@ function(page, argv) {
 					}
 					compound += "</div><div style='clear: both;'></div></div>";
 				}
-
 				
+				/* 处理未找到的情况 */
+				if(data.posts.length==0){
+					compound="<div class='app-section'>未找到相关内容</div>";
+				}
+				
+				/* 根据模式来决定是刷新还是加载更多 */
 				if (mode == 1) {
 					searcharr.posts = searcharr.posts.concat(data.posts);
 					$(page).find(".postsList").html($(page).find(".postsList").html() + compound);
@@ -50,16 +60,21 @@ function(page, argv) {
 					searcharr = data;
 					$(page).find(".postsList").html(compound);
 				}
-
-				$(page).find('.listClick').on('click',
+				
+				/* 注册列表点击事件 */
+				$(page).find('.listClick').on("click",
 				function() {
 					App.load("view", {
 						id: this.id,
 						obj: searcharr
 					});
 				});
+				
+				/* 设置状态为已经加载 */
 				loaded = true;
-				dataDate = new Date().format("ymd");
+
+				
+				/* 加载更多处理 */
 				spN = p;
 				$(page).find(".loadmore").hide();
 				if (spN < data.pages) {
@@ -74,10 +89,22 @@ function(page, argv) {
 		});
 	}
 
-	$(page).find('.app-button').on('click',
+	$(page).find('.app-button').on("click",
 	function() {
+		/* 注册加载更多点击事件 */
 		if (this.id == "loadmore") {
-			ref(spN + 1, 1);
+			ref(spN + 1, 1,argv.text);
+		}
+	});
+	
+	/* 注册搜索栏键盘事件 */
+	$(page).find(".app-input").on('keydown',
+	function() {
+		if (event.keyCode == 13) {
+			if ($(page).find(".app-input").val().trim() != "") {
+				$(page).find(".w-text").text($(page).find(".app-input").val());
+				ref(1,0,$(page).find(".app-input").val());
+			}
 		}
 	});
 

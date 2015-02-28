@@ -3,7 +3,6 @@ var searcharr;
 var pN=0;
 var spN=0;
 var loaded=false;
-var dataDate;
 
 Date.prototype.format = function(partten)
         {

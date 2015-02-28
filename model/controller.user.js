@@ -1,11 +1,11 @@
 App.controller('login',
 function(page) {
-	$(page).find('.app-button').on('click',
+	$(page).find('.app-button').on("click",
 	function() {
 		if (this.id == "login_btnLogin") {
 			var w = plus.nativeUI.showWaiting("正在验证, 请稍后...");
-			var username = encodeURIComponent($("#login_username").attr("value"));
-			var password = encodeURIComponent($("#login_password").attr("value"));
+			var username = encodeURIComponent($("#login_username").val());
+			var password = encodeURIComponent($("#login_password").val());
 			if(username.trim()==""||password.trim()==""){
 				plus.nativeUI.toast("缺少必填项");
 				return 0;
@@ -41,13 +41,13 @@ function(page) {
 
 App.controller('reg',
 function(page) {
-	$(page).find('.app-button').on('click',
+	$(page).find('.app-button').on("click",
 	function() {
 		if (this.id == "reg_btnReg") {
-			var username = encodeURIComponent($("#reg_username").attr("value"));
-			var email = encodeURIComponent($("#reg_email").attr("value"));
-			var pw = encodeURIComponent($("#reg_pw").attr("value"));
-			var pw2 = encodeURIComponent($("#reg_pw2").attr("value"));
+			var username = encodeURIComponent($("#reg_username").val());
+			var email = encodeURIComponent($("#reg_email").val());
+			var pw = encodeURIComponent($("#reg_pw").val());
+			var pw2 = encodeURIComponent($("#reg_pw2").val());
 			if(username.trim()==""||email.trim()==""||pw.trim()==""||pw2.trim()==""){
 				plus.nativeUI.toast("缺少必填项");
 				return 0;

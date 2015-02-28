@@ -5,7 +5,6 @@ if (window.plus) {
 }
 
 function plusReady() {
-	localStorage["service"] = "skypt.cn";
 	plus.navigator.setStatusBarBackground("#045FB4");
 	plus.key.addEventListener("backbutton",
 	function() {
@@ -23,13 +22,16 @@ function plusReady() {
 			});
 		}
 	});
-	if (localStorage.area) {
+	if (localStorage.service) {
 		if (!localStorage.cookie) {
 			App.load('index');
 		} else {
 			App.load('home');
 		}
 	} else {
-		App.load("ac");
+		localStorage["area"]="中国大陆地区";
+		localStorage["china"]=1;
+		localStorage["service"]="skypt.cn";
+		App.load('index');
 	}
 }
