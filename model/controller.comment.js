@@ -6,7 +6,7 @@ function(page, argv) {
 		var w = plus.nativeUI.showWaiting("正在加载评论...");
 		$.ajax({
 			type: 'GET',
-			url: 'http://' + localStorage.service + '/api/get_post/?include=comments,comment_count&post_id=' + argv.obj.posts[argv.id].id,
+			url: 'http://' + localStorage.service + '/api/get_post/?include=comments&post_id=' + argv.obj.posts[argv.id].id,
 			dataType: 'json',
 			cache: false,
 			timeout: 20000,
@@ -15,11 +15,17 @@ function(page, argv) {
 				if (data.post.comments.length != 0) {
 					var compound = "";
 					for (var i = 0; i <= data.post.comments.length - 1; i++) {
-						compound += "<div class='app-section' id=" + i + "><h4>" + without(data.post.comments[i].name) + "&nbsp;&nbsp;<small>" + data.post.comments[i].date + "</small></h4>" + data.post.comments[i].content + "</div>";
+						compound += "<div class='comments' id=" 
+						+ i 
+						+ "><div class='comments-title'>" 
+						+ without(data.post.comments[i].name) 
+						+ ":</div><div class='comments-content'>"
+						+ data.post.comments[i].content 
+						+ "</div></div>";
 					}
 					$(page).find(".commentsList").html(compound);
 				} else {
-					$(page).find(".commentsList").html("<div class='app-section'>暂无评论</div>");
+					$(page).find(".commentsList").html("<div class='comments comments-content'>暂无评论</div>");
 				}
 				w.close();
 			},

@@ -180,8 +180,12 @@
 					<i class="fa fa-tasks fa-lg">
 					</i>
 				</div>
+				<div class="app-button right" id="new">
+					<i class="fa fa-tasks fa-lg">
+					</i>
+				</div>
 			</div>
-			<div class="ref fade-show" style="background:#119977;color:#fff;text-align:center;padding-top:4px;display: none;height:0px;-webkit-transition: height 0.2s;">正在刷新...</div>
+			<div class="ref fade-show" >正在刷新...</div>
 			<div class="app-content">
 				<input type="search" placeholder="搜索百科" class="app-input">
 				</input>
@@ -290,18 +294,16 @@
 					</i>
 				</div>
 			</div>
-			<div class="app-content">
-				<div style="display: none;" class="app-section imagesec fade-show">
-					<center>
-						<img class="image" style="width:160px;">
+			<div class="app-content" style="background:#fff;">
+				<div class="baike-img imagesec fade-show">
+						<img class="image">
 						</img>
-					</center>
 				</div>
-				<div style="display: none;" class="app-section info fade-show">
+				<div class="baike-content info fade-show">
 					<div class="content">
 					</div>
 				</div>
-				<div style="display: none;" class="app-section info fade-show">
+				<div class="baike-info info fade-show">
 					<center>
 						这篇百科属于
 						<b>
@@ -312,10 +314,6 @@
 						<br/>
 						词条创建作者
 						<label class="creator">
-						</label>
-						<br/>
-						更新时间
-						<label class="time">
 						</label>
 					</center>
 				</div>
@@ -333,13 +331,10 @@
 				</div>
 			</div>
 			<div class="app-content">
-				<div class="app-section">
-					<textarea class="app-input w-content" placeholder="评论下这个小百科怎么样吧" style="height:100px;"></textarea>
+					<textarea class="app-input w-content" placeholder="评论下这个小百科怎么样吧" style="height:100px;background: #FAFAFA;font-size:18px;"></textarea>
 					<div class="app-button teal" id="send">
 						发送评论
 					</div>
-				</div>
-				<hr/>
 				<div class="commentsList">
 				</div>
 			</div>
@@ -488,10 +483,6 @@
 	<script src="appjs/js/dialog.js">
 	</script>
 	<script src="appjs/js/events.js">
-	</script>
-	<script src="appjs/js/form.js">
-	</script>
-	<script src="appjs/js/metrics.js">
 	</script>
 	<script src="appjs/js/transitions.js">
 	</script>

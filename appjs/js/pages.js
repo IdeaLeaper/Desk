@@ -265,7 +265,6 @@ App._Pages = function (window, document, Clickable, Scrollable, App, Utils, Even
 			eventNames.push( eventTypeToName(EVENTS[evt]) );
 		}
 		Events.init(page, eventNames);
-		Metrics.watchPage(page, pageName, args);
 
 		page[PAGE_MANAGER_VAR] = pageManager;
 

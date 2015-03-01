@@ -20,31 +20,36 @@ function(page, argv) {
 				
 				/* 组合页面元素 */
 				for (var i = 0; i <= data.posts.length -1 ; i++) {
-					compound += "<div class='app-section listClick' id=";
+					var excerpt = without(data.posts[i].excerpt) + "...";
+					var n = excerpt.search("继续阅读");
 					
-					/* 根据模式决定, 若刷新则以0开始, 若加载更多则以之前数组长度之后开始 */
+					if (n != -1) {
+						excerpt=excerpt.substr(0, n);
+					}
+					
+					var title=without(data.posts[i].title);
+					
 					if (mode == 1) {
-						compound += i + searcharr.posts.length;
+						var id = i + searcharr.posts.length;
 					} else {
-						compound += i;
+						var id = i;
 					}
-					compound += ">";
+					
 					if (data.posts[i]["custom_fields"].image) {
-						compound += "<div style='float: left;width:50px;height:50px;background:url(\"" + data.posts[i]["custom_fields"].image[0] + "?imageView2/1/w/50/h/50\");background-size:100% 100%;'></div><div style='margin-left:60px;margin-top:-1px;'>";
+						var img=data.posts[i]["custom_fields"].image[0] + "?imageView2/1/w/"+$(window).width()+"/h/180";
+						compound+='<div class="card listClick" id='+i+'>'
+						+'<div class="card-img">'
+						+'<img src="'+img+'" />'
+						+'<div class="card-img-title">'+title+'</div>'
+						+'</div>'
+						+'<div class="card-content">'+excerpt+'</div>'
+						+'</div>';
+					}else{
+						compound+='<div class="card listClick" id='+i+'>'
+						+'<div class="card-title">'+title+'</div>'
+						+'<div class="card-content">'+excerpt+'</div>'
+						+'</div>';
 					}
-					compound += "<b>" + without(data.posts[i].title);
-					if (data.posts[i]["custom_fields"].image) {
-						compound += "&nbsp;&nbsp;<i class='fa fa-picture-o'></i>";
-					}
-					var wexc = without(data.posts[i].excerpt) + "...";
-					var n = wexc.search("继续阅读");
-					compound += "</b><br>";
-					if (n == -1) {
-						compound += wexc;
-					} else {
-						compound += wexc.substr(0, n);
-					}
-					compound += "</div><div style='clear: both;'></div></div>";
 				}
 				
 				/* 处理未找到的情况 */
