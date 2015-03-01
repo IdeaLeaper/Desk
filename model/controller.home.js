@@ -5,13 +5,7 @@ function(page) {
 	var el=0;
 	$(page).find(".app-content").on("touchmove",function(e){
 		if(e.touches[0].pageY>el&&this.scrollTop==0){
-			$(page).find(".ref").show();
-			$(page).find(".ref").css("height","26px");
 			ref();
-			setTimeout(function(){
-				$(page).find(".ref").hide();
-				$(page).find(".ref").css("height","0px");
-			},800);
 		}
 	});
 	$(page).find(".app-content").on("touchstart",function(e){
@@ -23,7 +17,8 @@ function(page) {
 		if (!p) {
 			p = 1
 		};
-		var w = plus.nativeUI.showWaiting("正在获取百科...");
+		$(page).find(".ref").show();
+		$(page).find(".ref").height("26px");
 		$.ajax({
 			type: 'GET',
 			url: 'http://' + localStorage.service + '/api/get_recent_posts/?include=custom_fields,title,excerpt&page=' + p + "&china=" + localStorage.china,
@@ -96,10 +91,16 @@ function(page) {
 				if (pN < data.pages) {
 					$(page).find(".loadmore").show();
 				}
-				w.close();
+				setTimeout(function(){
+					$(page).find(".ref").hide();
+				},50);
+				$(page).find(".ref").height("0px");
 			},
 			error: function(xhr, type) {
-				w.close();
+				setTimeout(function(){
+					$(page).find(".ref").hide();
+				},50);
+				$(page).find(".ref").height("0px");
 				plus.nativeUI.toast("网络错误");
 			}
 		});
