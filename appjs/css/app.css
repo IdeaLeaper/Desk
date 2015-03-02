@@ -179,11 +179,11 @@ p.app-section {
 	background-color: #DDD;
 }
 .app-content .app-button.teal {
-	background-color: #2B9;
+	background-color: #009688;
 	color: #F3F4F5;
 }
 .app-content .app-button.teal.active {
-	background-color: #197;
+	background-color: #4DB6AC;
 }
 .app-content .app-button.green {
 	background-color: #3C7;
@@ -214,12 +214,13 @@ p.app-section {
 	background-color: #C43;
 }
 .app-content .app-button.blue {
-	background-color: #4486F0;
-	color: #F3F4F5;
+	background-color: #1E88E5;
+	color: #fff;
 }
 .app-content .app-button.blue.active {
-	background-color: #27A;
+	background-color: #42A5F5;
 }
+
 .app-content .app-button.dark-blue {
 	background-color: #345;
 	color: #F3F4F5;
@@ -232,10 +233,12 @@ p.app-section {
 
 /* Inputs */
 input.app-input {
-	height: 48px;
+	height: 54px;
 	background: #FFF;
-	line-height: 18px;
-	border-bottom: 1px solid rgba(0,0,0,0.1);
+	line-height: 30px;
+	font-size:18px;
+	color:#223344;
+	padding: 15px;
 }
 
 .app-section input.app-input {
@@ -246,7 +249,7 @@ input.app-input {
 	line-height: 20px;
 }
 .app-input[type="search"] {
-	padding-left: 34px;
+	padding-left: 36px;
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAACjElEQVR42r3Wz2sTQRjG8e2maW1rTYIoaPEgHqz/gD+KFi8VRb0pVPTi2UPNQRRCEHpQkCKIp0ilQg/BVqQKUi8q1lRzERQ0x3pQVKJIxTaxpql+DzkMD+xkNo1d+NBudt5535md3VnPdmQyGfP/FrSjC+trOhDxmnxo4k70I4lxzOA18riPYRzFFolvSvJBPMU8/los4w3S8JtRRCfGUZJEK3KuKiigV4pwHzl/43gYkLSKMhZRQsVsZ7T9jN1ShFPyCCahHVbwEiM4gyM4gRQe4Tu04DnskCLqFjACTf4Vg4gHxPo4gCfQ2HyY0e/BvIziIzY7LtgIpqC37YLrLIxJ8AK2SbBLIW+ln29ordfBdryXFZ2Eh7CLuBdVo4gyTmuhGjyA30byOexq5B2CKLIyC7fqBZ6V0U8jagkJ299jtHmWVXxJAsZq1xot4DD+GP3NYqOtgJQUkFllAQMoG/3l9WnSXS4p9yy7ys3suAzoOWK2gJMS8AKJBpP7uCj9PagXtBdFI+AH+mvXwhbQjbzslFfqPYYJ5OQ23IEPD2HeA6dkXyihz6WDFJblNTpkPN+BiWHO5E8ZyCvXytfhiwRXkZa2Qf0cRBG6F+yXWGsRhwL292nsRBei8NGKDmzCZePbQL1DPMw9TGJFR1IzgxtI4yqm8Av6LaDnOfSEmYlzWNKZCKJtAtrnEJcirNvqPnwK6tTyyfbM+F2vF9DmOhPmLfmABSzJVlvBIooYRQIeJiyFFlzXhJ73YQjXMYqbSOEYuqXtBtyTxLomtjrv8a7taswiJiy3bxYxr8mHLmYfWcua6JHQ5hcCP2BN3Eb7/8yva2LSSH4XsbVKbm5413AeCePamhYRRYv52z/AKK4/BRObOQAAAABJRU5ErkJggg==);
 	background-repeat: no-repeat;
 	background-position: 12px center;

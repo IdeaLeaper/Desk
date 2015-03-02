@@ -25,7 +25,7 @@ function(page, argv) {
 					}
 					$(page).find(".commentsList").html(compound);
 				} else {
-					$(page).find(".commentsList").html("<div class='comments comments-content'>暂无评论</div>");
+					$(page).find(".commentsList").html("<div style='height:20px;'></div><div style='text-align:center;color:#9E9E9E;padding:15px;font-size:18px;'>目前还没有评论</div>");
 				}
 				w.close();
 			},

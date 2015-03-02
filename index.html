@@ -1,196 +1,147 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-		<link rel="stylesheet" href="appjs/css/base.css">
-		<link rel="stylesheet" href="appjs/css/app.css">
-		<link rel="stylesheet" href="appjs/css/design.css">
-		<link rel="stylesheet" href="fas/css/font-awesome.min.css">
-		<title>
-			Desk
-		</title>
-	</head>
-	<body>
-		<div class="app-page" data-page="ac">
-			<div class="app-topbar">
-				<div class="app-title">
-					课桌区域设置
-				</div>
-			</div>
-			<div class="app-content">
-				<div class="app-section">
-					<center>
-						在使用课桌之前, 请先设置您的所在区域,我们将根据您的区域信息为您提供网络加速
-					</center>
-				</div>
-				<div class="app-section">
-					<div class="app-button" id="cn">
-						中国大陆地区
-					</div>
-					<div class="app-button" id="international">
-						国际地区
-					</div>
-				</div>
-				<div class="app-section">
-					我们将会为国际用户开启全球网络加速系统, 如果您在国内, 请不要选择国际地区. 您也可以在我的中心对您的地区信息进行更改.
-				</div>
-				<center>
-					<i class="fa fa-cloud">
-					</i>
-					&nbsp;&nbsp;Idea Leaper Technology
-				</center>
-			</div>
-		</div>
-		<div class="app-page" data-page="index">
-			<div class="app-topbar">
-				<div class="app-title">
-					欢迎来到课桌
-				</div>
-				<div class="app-button right" data-target="about">
-					&nbsp;
-					<i class="fa fa-info fa-lg">
-					</i>
-					&nbsp;
-				</div>
-			</div>
-			<div class="app-content">
 
-					<img src="res/logo.png" style="width:100%;" />
-				
-				<div class="app-section">
-					<center>
-						课桌是一个专门为青少年以及学生党打造的在线百科平台, 在这里, 每个人都只做自己, 写自己和同学的故事,
-						发自己的创作, 发现学生党们独特的才华.
-					</center>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<link rel="stylesheet" href="appjs/css/base.css">
+	<link rel="stylesheet" href="appjs/css/app.css">
+	<link rel="stylesheet" href="appjs/css/design.css">
+	<link rel="stylesheet" href="fas/css/font-awesome.min.css">
+	<title>
+		Desk
+	</title>
+</head>
+
+<body>
+	<!-- 引导页 -->
+	<div class="app-page" data-page="index">
+		<div class="app-topbar" style="background: rgb(0,150,255);">
+			<div class="app-title">
+				欢迎来到课桌
+			</div>
+			<div class="app-button right" data-target="appInfo">
+				&nbsp;
+				<i class="fa fa-info fa-lg">
+					</i> &nbsp;
+			</div>
+		</div>
+		<div class="app-content">
+			<div style="height:20px;background:rgb(0,150,255);"></div>
+			<img src="res/logo.png" style="width:100%;;" />
+			<div style="margin-top:-4px;height:30px;background:rgb(0,150,255);"></div>
+			<div style="background:#fff;padding:15px;font-size:18px;text-align: center;">
+					课桌是一个专门为青少年以及学生党打造的在线百科平台, 在这里, 每个人都只做自己, 写自己和同学的故事, 发自己的创作, 发现学生党们独特的才华.
+			</div>
+			<div style="height:20px;"></div>
+				<div class="app-button" data-target="login">
+					<i class="fa fa-globe fa-lg">
+						</i> &nbsp;&nbsp;登陆课桌
 				</div>
-				<div class="app-section">
-					<div class="app-button" data-target="login">
-						<i class="fa fa-globe fa-lg">
-						</i>
-						&nbsp;&nbsp;登陆课桌
-					</div>
-					<div class="app-button" data-target="reg">
-						<i class="fa fa-plus-square fa-lg">
-						</i>
-						&nbsp;&nbsp;注册账号
-					</div>
+				<div class="app-button" data-target="reg">
+					<i class="fa fa-plus-square fa-lg">
+						</i> &nbsp;&nbsp;注册账号
 				</div>
-				<div class="app-section">
-					<select class="area" style="outline: none;width:100%;background: #fff;border:none;font-size:16px;">
-					  <option value ="cn">中国大陆地区</option>  
-					  <option value ="inter">国际地区</option>
-					</select>  
-				</div>
-				<center>
-					<i class="fa fa-cloud">
+				<div style="height:18px;"></div>
+			<center>
+				<i class="fa fa-cloud">
+					</i> &nbsp;&nbsp;Idea Leaper Technology
+			</center>
+		</div>
+	</div>
+
+	<!-- 关于团队页面 -->
+	<div class="app-page" data-page="about">
+		<div class="app-topbar">
+			<div class="app-button left" data-back>
+				返回
+			</div>
+			<div class="app-title">
+				Idea Leaper 介绍
+			</div>
+		</div>
+		<div class="app-content">
+			<img src="res/team.png" style="background:#1565C0;width:100%;" />
+			<div style="margin-top:-4px;background:#fff;padding:15px;font-size:18px;text-align: center;">
+					我们不是商业的精英, 我们也不是IT的领跑者, 我们是 Idea Leaper, 一个完全由学生党组成的科技团队. 今天的课桌, 就是我们献上的第一份礼物, 请慢慢享用.
+			</div>
+			<div style="height:18px;"></div>
+			<center>
+				<i class="fa fa-cloud">
+					</i> &nbsp;&nbsp;Idea Leaper Technology
+			</center>
+		</div>
+	</div>
+	
+	
+	<!-- 程式信息页面 -->
+	<div class="app-page" data-page="appInfo">
+		<div class="app-topbar">
+			<div class="app-button left" data-back>
+				返回
+			</div>
+			<div class="app-title">
+				开发信息
+			</div>
+			<div class="app-button right" data-target="about">
+				<i class="fa fa-connectdevelop fa-lg">
+				</i>&nbsp;&nbsp;关于团队
+			</div>
+		</div>
+		<div class="app-content" style="background:#fff;">
+			 <div style="color:#1177BB;text-align:center;padding:20px;font-size:18px;">
+			 	<div style="color:#000;font-size:30px;margin-bottom: 5px;">Preview 0.75</div>
+			 	<br>
+			 	<b>App设计</b><br>
+			 	于任游(Aego Yu)
+			 	<br><br>
+			 	<b>Logo及UI设计</b><br>
+			 	张天宇(John Zhang)
+			 	<br><br>
+			 	<b>后端设计/安全</b><br>
+			 	于任游(Aego Yu)
+			 	<br>
+			 	费宗越(Sanae Fei)
+			 	<br>
+			 	鞠方舟(Angelic47)
+			 	<br><br>
+			 	<b>网络部署/支援</b><br>
+			 	李鸿宇
+			 	<br><br>
+			 	<b>鸣谢</b><br>
+			 	全体 Idea Leaper 成员
+			 	<br>
+			 	Wordpress.org
+			 	<br>
+			 	Github.com
+			 	<br><br>
+			 </div>
+		</div>
+	</div>
+
+	<!-- App主页 -->
+	<div class="app-page" data-page="home">
+		<div class="app-topbar">
+			<div class="app-button left" data-target="center">
+				<i class="fa fa-home fa-lg">
+				</i>
+			</div>
+			<div class="app-title">
+				课桌
+			</div>
+			<div class="app-button right" data-target="post">
+				<i class="fa fa-pencil fa-lg">
 					</i>
-					&nbsp;&nbsp;Idea Leaper Technology
-				</center>
 			</div>
 		</div>
-		<div class="app-page" data-page="about">
-			<div class="app-topbar">
-				<div class="app-button left" data-back>
-					返回
-				</div>
-				<div class="app-title">
-					关于我们
-				</div>
-			</div>
-			<div class="app-content">
-				<div class="app-section">
-					<img src="res/team.png" style="width:100%;" />
-				</div>
-				<div class="app-section">
-					<center>
-						我们不是商业的精英, 我们也不是IT的领跑者, 我们是 Idea Leaper, 一个完全由学生党组成的科技团队. 今天的课桌, 就是我们献上的第一份礼物,
-						请慢慢享用.
-					</center>
-				</div>
-				<center>
-					<i class="fa fa-cloud">
-					</i>
-					&nbsp;&nbsp;Idea Leaper Technology
-				</center>
-			</div>
-		</div>
-		<div class="app-page" data-page="search">
-			<div class="app-topbar">
-				<div class="app-button left" data-back>
-					返回
-				</div>
-				<div class="app-title">
-					搜索 '
-					<label class="w-text">
-					</label>
-					'
-				</div>
-			</div>
-			<div class="app-content">
-				<input type="search" placeholder="搜索百科" class="app-input">
-				</input>
-				<div class="postsList">
-				</div>
-				<div style="display:none;" class="app-button loadmore" id="loadmore">
-					加载更多
-				</div>
-			</div>
-		</div>
+		<div class="ref fade-show">正在刷新...</div>
 		
-		<div class="app-page" data-page="cate">
-			<div class="app-topbar">
-				<div class="app-button left" data-back>
-					返回
-				</div>
-				<div class="app-title">
-					分类下的最新百科
-				</div>
-			</div>
-			<div class="app-content">
-				<div class="app-section">
-					<select class="w-cate sel">
-					  <option value ="original">原创</option>  
-					  <option value ="person">人物</option>
-					  <option value ="tech">科技</option>
-					  <option value ="life">生活</option>
-					  <option value ="art">艺术</option>
-					  <option value ="nature">自然</option>
-					  <option value ="other">其他</option>
-					</select>  
-				</div>
-				<div class="postsList">
-				</div>
-				<div style="display:none;" class="app-button loadmore" id="loadmore">
-					加载更多
-				</div>
-			</div>
-		</div>
+		<div class="app-content">
 		
-		<div class="app-page" data-page="home">
-			<div class="app-topbar">
-				<div class="app-button left" id="refresh">
-					<i class="fa fa-rocket fa-lg">
-					</i>
-				</div>
-				<div class="app-title">
-					课桌
-				</div>
-				<div class="app-button right" id="new">
-					<i class="fa fa-tasks fa-lg">
-					</i>
-				</div>
-				<div class="app-button right" id="new">
-					<i class="fa fa-tasks fa-lg">
-					</i>
-				</div>
-			</div>
-			<div class="ref" >正在刷新...</div>
-			<div class="app-content">
-				<input type="search" placeholder="搜索百科" class="app-input">
-				</input>
-				<div>
-					<div style="width:50%;float:left;" class="app-button" data-target="cate">
+			<input type="search" placeholder="搜索课桌" class="app-input">
+			</input>
+			<div>
+				<!--<div style="width:50%;float:left;" class="app-button" data-target="cate">
 						<i class="fa fa-bookmark">
 						</i>
 						&nbsp;&nbsp;分类
@@ -199,324 +150,349 @@
 						<i class="fa fa-tags">
 						</i>
 						&nbsp;&nbsp;标签
-					</div>
-				</div>
-				<div class="postsList">
-				</div>
-				<div style="display:none;" class="app-button loadmore" id="loadmore">
-					加载更多
-				</div>
+					</div>-->
+			</div>
+			<div class="postsList">
+			</div>
+			<div style="display:none;" class="app-button loadmore" id="loadmore">
+				<i class="fa fa-chevron-circle-down fa-lg"></i>&nbsp;&nbsp;加载更多
 			</div>
 		</div>
-		<div class="app-page " style="background:#000;" data-page="viewer">
-			<div class="app-topbar">
-				<div class="left app-button" data-back>
-					返回
-				</div>
-				<div class="app-title">
-					查看图片
-				</div>
+	</div>
+	
+	<!-- 搜索页 -->
+	<div class="app-page" data-page="search">
+		<div class="app-topbar">
+			<div class="app-button left" data-back>
+				返回
 			</div>
-			<div class="app-content">
-				<img class="image" style="width:100%;display:none;">
+			<div class="app-title">
+				搜索 '
+				<label class="w-text">
+				</label>
+				'
+			</div>
+		</div>
+		<div class="app-content">
+			<div>
+			<div id="baike" class="app-button y s-baike" style="float:left;width:50%;">百科</div>
+			<div id="tag" class="app-button r s-tag">标签</div>
+			</div>
+			<input type="search" placeholder="关键字" class="app-input">
+			</input>
+			<div class="postsList">
+			</div>
+			<div style="display:none;" class="app-button loadmore" id="loadmore">
+				<i class="fa fa-chevron-circle-down fa-lg"></i>&nbsp;&nbsp;加载更多
+			</div>
+		</div>
+	</div>
+
+	<!-- 百科查看器-->
+	<div class="app-page" data-page="view">
+		<div class="app-topbar">
+			<div class="app-button left" data-back>
+				返回
+			</div>
+			<div class="app-title">
+				百科标题
+			</div>
+			<div class="app-button right" id="comment">
+				<i class="fa fa-comments fa-lg">
+					</i>
+			</div>
+		</div>
+		<div class="app-content" style="background:#fff;">
+			<div class="baike-img imagesec fade-show">
+				<img class="image">
 				</img>
 			</div>
-		</div>
-		<div class="app-page " data-page="center">
-			<div class="app-topbar">
-				<div class="left app-button" data-back>
-					返回
-				</div>
-				<div class="app-title">
-					我的中心
-				</div>
-				<div class="app-button right" data-target="about">
-					&nbsp;
-					<i class="fa fa-info fa-lg">
-					</i>
-					&nbsp;
+			<div class="baike-content info fade-show">
+				<div class="content">
 				</div>
 			</div>
-			<div class="app-content">
-				<div style="text-align: center;" class="app-section">
-					<div style="font-size:30px;" class="myname">
-					</div>
-					<i class="fa fa-envelope-o fa-lg"></i>&nbsp;
-					<label class="myemail">
-					</label>
-					<br>
-					<i class="fa fa-clock-o fa-lg"></i>&nbsp;
-					<label class="myregtime">
-					</label>
-					<br>
-					<i class="fa fa-location-arrow fa-lg"></i>&nbsp;
-					<label class="area">
-					</label>
-				</div>
-				<div style="text-align: center;" class="app-section">
-					<i class="fa fa-diamond fa-lg"></i>&nbsp;
-					<label class="mycoin">获取中...
-					</label>
-				</div>
-				<div class="app-section">
-					<div class="app-button">
-						<i class="fa fa-key fa-lg">
-						</i>
-						&nbsp;&nbsp;更改密码
-					</div>
-					<div class="app-button" id="logout">
-						<i class="fa fa-sign-out fa-lg">
-						</i>
-						&nbsp;&nbsp;登出账户
-					</div>
-					<div class="app-button" id="_clearLocalStorage">
-						localStorage.clear()
-					</div>
-					<div class="app-button" id="_cookie">
-						console.log(cookie)
-					</div>
-				</div>
-				<div class="app-section">
-您可以登出以切换地区位置, 我们将针对您的位置进行全球加速. 正确选择地区有利于优化您的使用.
-				</div>
-			</div>
-		</div>
-		<div class="app-page" data-page="view">
-			<div class="app-topbar">
-				<div class="app-button left" data-back>
-					返回
-				</div>
-				<div class="app-title">
-					百科标题
-				</div>
-				<div class="app-button right" id="comment">
-					<i class="fa fa-comments fa-lg">
-					</i>
-				</div>
-			</div>
-			<div class="app-content" style="background:#fff;">
-				<div class="baike-img imagesec fade-show">
-						<img class="image">
-						</img>
-				</div>
-				<div class="baike-content info fade-show">
-					<div class="content">
-					</div>
-				</div>
-				<div class="baike-info info fade-show">
-					<center>
-						这篇百科属于
-						<b>
-							<label class="cate">
-							</label>
-						</b>
-						范畴
-						<br/>
-						词条创建作者
-						<label class="creator">
-						</label>
-					</center>
-				</div>
-				<div style="display: none;" class="app-button edit fade-show">
-					编辑百科
-				</div>
-			</div>
-		</div>
-		<div class="app-page" data-page="comment">
-			<div class="app-topbar">
-				<div class="app-button left" data-back>
-				</div>
-				<div class="app-title">
-					评论
-				</div>
-			</div>
-			<div class="app-content">
-					<textarea class="app-input w-content" placeholder="评论下这个小百科怎么样吧" style="height:100px;background: #FAFAFA;font-size:18px;"></textarea>
-					<div class="app-button teal" id="send">
-						发送评论
-					</div>
-				<div class="commentsList">
-				</div>
-			</div>
-		</div>
-		<div class="app-page" data-page="post">
-			<div class="app-topbar">
-				<div class="app-button left" data-back>
-					返回
-				</div>
-				<div class="app-title">
-					发布新百科
-				</div>
-				<div class="app-button right" id="post">
-					<i class="fa fa-pencil fa-lg">
-					</i>
-				</div>
-			</div>
-			<div class="app-content">
-				<div class="app-section">
-					<input placeholder="百科标题" class="app-input w-title"></input>
-				</div>
-				<div class="app-section">
-					<textarea class="app-input w-content" placeholder="百科的内容" style="height:240px;"></textarea>
-				</div>
-				<div style="display:none;" class="app-section imagesec">
-					<img class="lookat" style="width:100%;">
-					</img>
-				</div>
-				<div class="app-section">
-					<div class="app-button" id="select">
-						<i class="fa fa-file-image-o fa-lg">
-						</i>
-						&nbsp;&nbsp;选择图片
-					</div>
-					<div class="app-button" id="take">
-						<i class="fa fa-camera fa-lg">
-						</i>
-						&nbsp;&nbsp;拍摄图片
-					</div>
-					<div class="app-button" id="clear">
-						<i class="fa fa-remove fa-lg">
-						</i>
-						&nbsp;&nbsp;清空
-					</div>
-				</div>
-				<div class="app-section">
-					<select class="w-cate sel">
-					  <option selected="selected" value ="original" >原创</option>  
-					  <option value ="person">人物</option>
-					  <option value ="tech">科技</option>
-					  <option value ="life">生活</option>
-					  <option value ="art">艺术</option>
-					  <option value ="nature">自然</option>
-					  <option value ="other">其他</option>
-					</select>  
-				</div>
-			</div>
-		</div>
-		<div class="app-page" data-page="login">
-			<div class="app-topbar">
-				<div class="app-button left" data-back>
-					返回
-				</div>
-				<div class="app-title">
-					登陆到课桌
-				</div>
-			</div>
-			<div class="app-content">
-				<div class="app-section">
-					<input class="app-input" id="login_username" type="text" placeholder="用户名"
-					/>
-				</div>
-				<div class="app-section">
-					<input class="app-input" id="login_password" type="password" placeholder="密码"
-					/>
-				</div>
-				<div class="app-section">
-					<div class="app-button" id="login_btnLogin">
-						<i class="fa fa-globe fa-lg">
-						</i>
-						&nbsp;&nbsp;登陆
-					</div>
-				</div>
+			<div class="baike-info info fade-show">
 				<center>
-					<i class="fa fa-cloud">
-					</i>
-					&nbsp;&nbsp;Idea Leaper Technology
+					<div class="tags-contain">这篇百科包含
+					<b><label class="tags"></label></b>标签</div>
+					<div style="margin-top:5px;">创建者:&nbsp;<label class="creator"></label>&nbsp;|&nbsp;<b class="query" style="color:#1177BB;">申请质疑</b></div>
 				</center>
 			</div>
-		</div>
-		<div class="app-page" data-page="reg">
-			<div class="app-topbar">
-				<div class="app-button left" data-back>
-					返回
+			<div style="display: none;" class="edit fade-show">
+				<div style="float:left;width:50%;" class="app-button" id="edit">
+					编辑文字
 				</div>
-				<div class="app-title">
-					注册课桌账号
+				<div class="app-button" id="changeImg">
+					更换图片
 				</div>
 			</div>
-			<div class="app-content">
-				<div class="app-section">
-					<input class="app-input" id="reg_username" type="text" placeholder="用户名"
-					/>
-				</div>
-				<div class="app-section">
-					<input class="app-input" id="reg_email" type="text" placeholder="邮件地址"
-					/>
-				</div>
-				<div class="app-section">
-					<input class="app-input" id="reg_pw" type="password" placeholder="密码"
-					/>
-				</div>
-				<div class="app-section">
-					<input class="app-input" id="reg_pw2" type="password" placeholder="重复密码"
-					/>
-				</div>
-				<div class="app-section">
-					<div class="app-button" id="reg_btnReg">
-						<i class="fa fa-plus-square fa-lg">
-						</i>
-						&nbsp;&nbsp;立即注册
-					</div>
-				</div>
-				<center>
-					<i class="fa fa-cloud">
+		</div>
+	</div>
+
+	<!-- 图片查看器-->
+	<div class="app-page " style="background:#000;" data-page="viewer">
+		<div class="app-topbar">
+			<div class="left app-button" data-back>
+				返回
+			</div>
+			<div class="app-title">
+				查看图片
+			</div>
+		</div>
+		<div class="app-content">
+			<img class="image" style="width:100%;display:none;">
+			</img>
+		</div>
+	</div>
+
+	<!-- 评论百科-->
+	<div class="app-page" data-page="comment">
+		<div class="app-topbar">
+			<div class="app-button left" data-back>
+			</div>
+			<div class="app-title">
+				评论
+			</div>
+		</div>
+		<div class="app-content">
+			<textarea class="app-input w-content" placeholder="评论下这个小百科怎么样吧" style="height:120px;padding:15px;background: #FAFAFA;font-size:18px;"></textarea>
+			<div class="app-button teal" id="send">
+				发送评论
+			</div>
+			<div class="commentsList">
+			</div>
+		</div>
+	</div>
+
+	<!-- 发布百科-->
+	<div class="app-page" data-page="post">
+		<div class="app-topbar">
+			<div class="app-button left" data-back>
+				返回
+			</div>
+			<div class="app-title">
+				发布新百科
+			</div>
+			<div class="app-button right" id="post">
+				<i class="fa fa-paper-plane fa-lg">
 					</i>
-					&nbsp;&nbsp;Idea Leaper Technology
-				</center>
 			</div>
 		</div>
-	</body>
-	<script src="appjs/js/lib/zepto.js">
-	</script>
-	<script src="appjs/js/lib/clickable.js">
-	</script>
-	<script src="appjs/js/lib/scrollable.js">
-	</script>
-	<script src="appjs/js/lib/swapper.js">
-	</script>
-	<script src="appjs/js/app.js">
-	</script>
-	<script src="appjs/js/utils.js">
-	</script>
-	<script src="appjs/js/android-touch-fix.js">
-	</script>
-	<script src="appjs/js/dialog.js">
-	</script>
-	<script src="appjs/js/events.js">
-	</script>
-	<script src="appjs/js/transitions.js">
-	</script>
-	<script src="appjs/js/scroll-fix.js">
-	</script>
-	<script src="appjs/js/scroll.js">
-	</script>
-	<script src="appjs/js/pages.js">
-	</script>
-	<script src="appjs/js/stack.js">
-	</script>
-	<script src="appjs/js/navigation.js">
-	</script>
-	<script src="model/function.js">
-	</script>
-	<script src="model/controller.index.js">
-	</script>
-	<script src="model/controller.comment.js">
-	</script>
-	<script src="model/controller.view.js">
-	</script>
-	<script src="model/controller.user.js">
-	</script>
-	<script src="model/controller.post.js">
-	</script>
-	<script src="model/controller.center.js">
-	</script>
-	<script src="model/controller.search.js">
-	</script>
-	<script src="model/controller.cate.js">
-	</script>
-	<script src="model/controller.home.js">
-	</script>
-	<script src="model/init.js">
-	</script>
+		<div class="app-content">
+				<div style="height:20px;"></div>
+				<input placeholder="百科标题" class="app-input w-title"></input>
+				<input style="color:#1177BB;" class="tags app-input" placeholder="在此处插入标签, 用逗号隔开"></input>
+				<div style="height:20px;"></div>
+				<textarea class="app-input w-content" placeholder="百科的内容" style="height:240px;"></textarea>
+				<div style="height:20px;"></div>
+			<div style="display:none;" class="imagesec">
+				<div style="background: #fff;text-align: center;">
+				<img class="lookat" style="width:100%;"></img>
+				</div>
+				<div style="height:20px;"></div>
+			</div>
+				<div class="app-button" id="select">
+					<i class="fa fa-file-image-o fa-lg">
+						</i> &nbsp;&nbsp;选择图片
+				</div>
+				<div class="app-button" id="take">
+					<i class="fa fa-camera fa-lg">
+						</i> &nbsp;&nbsp;拍摄图片
+				</div>
+				<div class="app-button" id="clear">
+					<i class="fa fa-remove fa-lg">
+						</i> &nbsp;&nbsp;清空
+				</div>
+				<div style="height:20px;"></div>
+		</div>
+	</div>
+	
+	
+	<!-- 编辑百科-->
+	<div class="app-page" data-page="edit">
+		<div class="app-topbar">
+			<div class="app-button left" data-back>
+				返回
+			</div>
+			<div class="app-title">
+				编辑 '<label class="w-name"></label>'
+			</div>
+			<div class="app-button right" id="post">
+				<i class="fa fa-paper-plane fa-lg">
+					</i>
+			</div>
+		</div>
+		<div class="app-content">
+				<div style="height:20px;"></div>
+				<input style="color:#1177BB;" class="tags app-input" placeholder="在此处插入标签, 用逗号隔开"></input>
+				<div style="height:20px;"></div>
+				<textarea class="app-input w-content" placeholder="百科的内容" style="height:240px;"></textarea>
+				<div style="height:20px;"></div>
+		</div>
+	</div>
+
+	<!-- 我的中心-->
+	<div class="app-page " data-page="center">
+		<div class="app-topbar">
+			<div class="left app-button" data-back>
+				返回
+			</div>
+			<div class="app-title">
+				我的中心
+			</div>
+			<div class="app-button right" data-target="appInfo">
+				&nbsp;
+				<i class="fa fa-info fa-lg">
+					</i> &nbsp;
+			</div>
+		</div>
+		<div class="app-content">
+			<div style="text-align: center;background: #fff;padding:15px;font-size:18px;">
+				<div style="font-size:30px;" class="myname">
+				</div>
+				<i class="fa fa-envelope-o fa-lg"></i>&nbsp;
+				<label class="myemail">
+				</label>
+				<br>
+				<i class="fa fa-clock-o fa-lg"></i>&nbsp;
+				<label class="myregtime">
+				</label>
+			</div>
+			<div style="height:20px;"></div>
+			<div class="credit-coin">
+				<i class="fa fa-diamond fa-lg"></i>&nbsp;
+				<label class="mycoin">获取中...
+				</label>
+			</div>
+			<div style="height:20px;"></div>
+				<div class="app-button" id="changePwd">
+					<i class="fa fa-key fa-lg">
+						</i> &nbsp;&nbsp;更改密码
+				</div>
+				<div class="app-button" id="logout">
+					<i class="fa fa-sign-out fa-lg">
+						</i> &nbsp;&nbsp;登出账户
+				</div>
+			<div style="height:20px;"></div>
+				<div class="app-button" id="mybaike">
+					<i class="fa fa-code-fork fa-lg">
+					</i> &nbsp;&nbsp;我创建的词条
+				</div>
+				<div class="app-button" id="jiasu">
+					<i class="fa fa-cloud fa-lg">
+					</i> &nbsp;&nbsp;云加速 [<label class="speedStatus"></label>]
+				</div>
+		</div>
+	</div>
+
+
+	<!-- 登陆页-->
+	<div class="app-page" data-page="login">
+		<div class="app-topbar">
+			<div class="app-button left" data-back>
+				返回
+			</div>
+			<div class="app-title">
+				登陆到课桌
+			</div>
+		</div>
+		<div class="app-content">
+			<div style="height:20px;"></div>
+				<input class="app-input" id="login_username" type="text" placeholder="用户名" />
+				<input class="app-input" id="login_password" type="password" placeholder="密码" />
+				<div style="height:20px;"></div>
+				<div class="app-button" id="login_btnLogin">
+					<i class="fa fa-globe fa-lg">
+						</i> &nbsp;&nbsp;登陆
+				</div>
+				<div style="height:18px;"></div>
+			<center>
+				<i class="fa fa-cloud">
+					</i> &nbsp;&nbsp;Idea Leaper Technology
+			</center>
+		</div>
+	</div>
+
+	<!-- 注册页-->
+	<div class="app-page" data-page="reg">
+		<div class="app-topbar">
+			<div class="app-button left" data-back>
+				返回
+			</div>
+			<div class="app-title">
+				注册课桌账号
+			</div>
+		</div>
+		<div class="app-content">
+			<div style="height:20px;"></div>
+				<input class="app-input" id="reg_username" type="text" placeholder="用户名" />
+				<input class="app-input" id="reg_email" type="text" placeholder="邮件地址" />
+				<input class="app-input" id="reg_pw" type="password" placeholder="密码" />
+				<input class="app-input" id="reg_pw2" type="password" placeholder="重复密码" />
+			<div style="height:20px;"></div>
+			<div class="app-button" id="reg_btnReg">
+					<i class="fa fa-plus-square fa-lg">
+					</i> &nbsp;&nbsp;立即注册
+				</div>
+			<div style="height:18px;"></div>
+			<center>
+				<i class="fa fa-cloud">
+					</i> &nbsp;&nbsp;Idea Leaper Technology
+			</center>
+		</div>
+	</div>
+</body>
+<script src="appjs/js/lib/zepto.js">
+</script>
+<script src="appjs/js/lib/clickable.js">
+</script>
+<script src="appjs/js/lib/scrollable.js">
+</script>
+<script src="appjs/js/lib/swapper.js">
+</script>
+<script src="appjs/js/app.js">
+</script>
+<script src="appjs/js/utils.js">
+</script>
+<script src="appjs/js/android-touch-fix.js">
+</script>
+<script src="appjs/js/dialog.js">
+</script>
+<script src="appjs/js/events.js">
+</script>
+<script src="appjs/js/transitions.js">
+</script>
+<script src="appjs/js/scroll-fix.js">
+</script>
+<script src="appjs/js/scroll.js">
+</script>
+<script src="appjs/js/pages.js">
+</script>
+<script src="appjs/js/stack.js">
+</script>
+<script src="appjs/js/navigation.js">
+</script>
+<script src="model/function.js">
+</script>
+<script src="model/controller.index.js">
+</script>
+<script src="model/controller.comment.js">
+</script>
+<script src="model/controller.view.js">
+</script>
+<script src="model/controller.user.js">
+</script>
+<script src="model/controller.post.js">
+</script>
+<script src="model/controller.edit.js">
+</script>
+<script src="model/controller.center.js">
+</script>
+<script src="model/controller.search.js">
+</script>
+<script src="model/controller.home.js">
+</script>
+<script src="model/init.js">
+</script>
 
 </html>

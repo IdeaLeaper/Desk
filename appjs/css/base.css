@@ -4,6 +4,7 @@ html, body, div, form, p, ul, li, span, label, img {
 	margin: 0;
 	padding: 0;
 	outline: none;
+	font-family: "Heiti SC";
 }
 html, body {
 	height: 100%;
@@ -80,6 +81,7 @@ body {
 	padding: 0 16px;
 	height: 100%;
 	line-height: 56px;
+	font-size:18px;
 }
 .app-topbar .app-button.left {
 	left: 0;
@@ -173,8 +175,10 @@ body {
 .app-content .app-button {
 	margin: 0 auto;
 	height: 40px;
+	padding: 5px;
 	border-bottom: 1px solid #AAA;
 	line-height: 40px;
+	font-size:18px;
 	overflow: hidden;
 	text-align: center;
 	text-overflow: ellipsis;
@@ -191,7 +195,7 @@ body {
 	background-color: #F77;
 }
 .app-content .app-button.blue {
-	background-color: #77F;
+	background-color: #1565C0;
 }
 
 
@@ -306,14 +310,14 @@ textarea.app-input {
 	position: relative;
 	margin-bottom: 8px;
 	padding: 16px 20px 0;
-	font-size: 18px;
+	font-size: 22px;
 	font-weight: 300;
 	text-align: center;
 }
 .app-dialog .text {
 	margin: 12px 0;
 	padding: 0 20px 8px;
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: 400;
 	text-align: center;
 }

@@ -5,7 +5,9 @@ if (window.plus) {
 }
 
 function plusReady() {
-	plus.navigator.setStatusBarBackground("#045FB4");
+	plus.webview.WebviewBounceStyle={position:"none"};
+	plus.navigator.setStatusBarBackground(" #1565C0");
+	plus.navigator.setStatusBarStyle("UIStatusBarStyleBlackOpaque");
 	plus.key.addEventListener("backbutton",
 	function() {
 		if (App.back() == false) {
@@ -22,16 +24,12 @@ function plusReady() {
 			});
 		}
 	});
-	if (localStorage.service) {
-		if (!localStorage.cookie) {
-			App.load('index');
-		} else {
-			App.load('home');
-		}
-	} else {
-		localStorage["area"]="中国大陆地区";
-		localStorage["china"]=1;
+	if(!localStorage.service){
 		localStorage["service"]="skypt.cn";
+	}
+	if (!localStorage.cookie) {
 		App.load('index');
+	} else {
+		App.load('home');
 	}
 }

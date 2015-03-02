@@ -37,7 +37,7 @@ function(page) {
 			
 			var w = plus.nativeUI.showWaiting("正在准备...");
 			
-			
+			/* 发布百科UPLOADER */
 			var task = plus.uploader.createUpload('http://' + localStorage.service + '/api/posts/create_post/', {
 				method: "POST",
 				blocksize: 204800,
@@ -48,7 +48,7 @@ function(page) {
 						w.close();
 						console.log("Upload: " + t.responseText);
 						loaded=false;
-						App.back();
+						App.back("home");
 					} else {
 						w.close();
 						plus.nativeUI.toast("发布失败");
@@ -56,6 +56,7 @@ function(page) {
 					}
 			});
 			
+			/* 上传图片UPLOADER */
 			var img = plus.uploader.createUpload('http://upload.qiniu.com/', {
 				method: "POST",
 				blocksize: 204800,
@@ -75,13 +76,19 @@ function(page) {
 					}
 			});
 			
+			/* 将中文逗号转化成英文逗号 */
+			var tagsource=$(page).find(".tags").val();
+			tagsource=tagsource.replace(/\s*，\s*/g,",");
 			
+			/* 添加数据 */
 			task.addData("title", $(page).find(".w-title").val());
 			task.addData("content", within($(page).find(".w-content").val()));
-			task.addData("categories", "['" + $(page).find(".w-cate").val()+ "']");
+			task.addData("tags", tagsource);
 			task.addData("cookie", localStorage["cookie"]);
 			task.addData("status", "publish");
 			
+			
+			/* 获得上传图片证书 */
 			if($(page).find(".lookat").attr("src")){
 				img.addFile($(page).find(".lookat").attr("src"),{key:"file"});
 				w.setTitle("正在获取授权...");

@@ -3,6 +3,9 @@ var searcharr;
 var pN=0;
 var spN=0;
 var loaded=false;
+var view_loaded=false;
+var search_loaded=false;
+var searchTag=false;
 
 Date.prototype.format = function(partten)
         {
@@ -51,4 +54,12 @@ function getfilename(path){
 	}else{
 		return path.substr(i+1,path.length-i-1);
 	}
+}
+
+function devnotice(){
+			App.dialog({
+						title: '开发者提示',
+						text: '目前这个功能还在制作中, 请等待下一个版本的更新',
+						okButton: '我已了解'
+			});
 }

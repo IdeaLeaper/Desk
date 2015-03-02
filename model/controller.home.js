@@ -5,7 +5,12 @@ function(page) {
 	var el=0;
 	$(page).find(".app-content").on("touchmove",function(e){
 		if(e.touches[0].pageY>el&&this.scrollTop==0){
+			$(page).find(".ref").show();
 			ref();
+			setTimeout(function(){
+				$(page).find(".ref").hide();
+			},500);
+			
 		}
 	});
 	$(page).find(".app-content").on("touchstart",function(e){
@@ -17,8 +22,7 @@ function(page) {
 		if (!p) {
 			p = 1
 		};
-		$(page).find(".ref").show();
-		$(page).find(".ref").height("26px");
+		var w = plus.nativeUI.showWaiting("正在获取百科...");
 		$.ajax({
 			type: 'GET',
 			url: 'http://' + localStorage.service + '/api/get_recent_posts/?include=custom_fields,title,excerpt&page=' + p + "&china=" + localStorage.china,
@@ -49,7 +53,7 @@ function(page) {
 					
 					if (data.posts[i]["custom_fields"].image) {
 						var img=data.posts[i]["custom_fields"].image[0] + "?imageView2/1/w/"+$(window).width()+"/h/180";
-						compound+='<div class="card listClick" id='+i+'>'
+						compound+='<div class="card listClick" id='+id+'>'
 						+'<div class="card-img">'
 						+'<img src="'+img+'" />'
 						+'<div class="card-img-title">'+title+'</div>'
@@ -57,7 +61,7 @@ function(page) {
 						+'<div class="card-content">'+excerpt+'</div>'
 						+'</div>';
 					}else{
-						compound+='<div class="card listClick" id='+i+'>'
+						compound+='<div class="card listClick" id='+id+'>'
 						+'<div class="card-title">'+title+'</div>'
 						+'<div class="card-content">'+excerpt+'</div>'
 						+'</div>';
@@ -91,21 +95,17 @@ function(page) {
 				if (pN < data.pages) {
 					$(page).find(".loadmore").show();
 				}
-				setTimeout(function(){
-					$(page).find(".ref").hide();
-				},50);
-				$(page).find(".ref").height("0px");
+				w.close();
 			},
 			error: function(xhr, type) {
-				setTimeout(function(){
-					$(page).find(".ref").hide();
-				},50);
-				$(page).find(".ref").height("0px");
+				w.close();
 				plus.nativeUI.toast("网络错误");
 			}
 		});
 	}
 
+
+	/* 强制刷新以及缓存控制 */
 	$(page).on('appShow',
 	function() {
 		/* 如果未加载则刷新 */
@@ -113,41 +113,11 @@ function(page) {
 			ref();
 		}
 	});
-
+	
+	/* 注册按钮点击事件 */
 	$(page).find('.app-button').on("click",
 	function() {
-		
-		/* 注册标题栏右侧功能按钮事件 */
-		if (this.id == "new") {
-			plus.nativeUI.actionSheet({
-				title: "Welcome back, " + localStorage.username + "!",
-				cancel: "取消",
-				buttons: [{
-					title: "发布新百科"
-				},
-				{
-					title: "一图速成"
-				},
-				{
-					title: "我的中心"
-				}]
-			},
-			function(e) {
-				if (e.index == 1) {
-					/* 载入发布界面 */
-					App.load("post");
-				} else if (e.index == 3) {
-					/* 载入用户中心界面 */
-					App.load("center");
-				}
-			});
-			
-		/* 注册刷新点击事件 */
-		} else if (this.id == "refresh") {
-			ref();
-			
-		/* 注册加载更多点击事件 */
-		} else if (this.id == "loadmore") {
+		 if (this.id == "loadmore") {
 			ref(pN + 1, 1);
 		}
 	});
@@ -160,6 +130,7 @@ function(page) {
 				App.load("search", {
 					text: $(page).find(".app-input").val().trim()
 				});
+				$(page).find(".app-input").val("");
 			}
 		}
 	});
