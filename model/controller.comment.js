@@ -3,7 +3,8 @@ function(page, argv) {
 	$(page).find(".app-title").text("评论 '" + argv.obj.posts[argv.id].title + "'");
 
 	function ref() {
-		var w = plus.nativeUI.showWaiting("正在加载评论...");
+		//var w = plus.nativeUI.showWaiting("正在加载评论...");
+		$(page).find(".commentsList").html("<div style='height:20px;'></div><div style='text-align:center;color:#9E9E9E;padding:15px;font-size:18px;'><i class='fa fa-spinner'></i>&nbsp;&nbsp;正在加载评论</div>");
 		$.ajax({
 			type: 'GET',
 			url: 'http://' + localStorage.service + '/api/get_post/?include=comments&post_id=' + argv.obj.posts[argv.id].id,
@@ -27,11 +28,12 @@ function(page, argv) {
 				} else {
 					$(page).find(".commentsList").html("<div style='height:20px;'></div><div style='text-align:center;color:#9E9E9E;padding:15px;font-size:18px;'>目前还没有评论</div>");
 				}
-				w.close();
+				//w.close();
 			},
 			error: function(xhr, type) {
-				w.close();
+				//w.close();
 				plus.nativeUI.toast("网络错误");
+				$(page).find(".commentsList").html("<div style='height:20px;'></div><div style='text-align:center;color:#9E9E9E;padding:15px;font-size:18px;'>加载失败, 请重新打开本页面</div>");
 			}
 		});
 	}

@@ -83,10 +83,6 @@
 			<div class="app-title">
 				开发信息
 			</div>
-			<div class="app-button right" data-target="about">
-				<i class="fa fa-connectdevelop fa-lg">
-				</i>&nbsp;&nbsp;关于团队
-			</div>
 		</div>
 		<div class="app-content" style="background:#fff;">
 			 <div style="color:#1177BB;text-align:center;padding:20px;font-size:18px;">
@@ -134,7 +130,7 @@
 					</i>
 			</div>
 		</div>
-		<div class="ref fade-show">正在刷新...</div>
+		<div class="ref fade-show"><i class="fa fa-spinner"></i>&nbsp;&nbsp;正在刷新...</div>
 		
 		<div class="app-content">
 		
@@ -206,7 +202,10 @@
 			<div class="baike-img imagesec fade-show">
 				<img class="image">
 				</img>
-			</div>
+		</div>
+			<div class="loading"><div class="load-text" style='position: absolute;top: 40%;left: 50%;width:50%;-webkit-transform: translate(-50%, -50%);text-align:center;color:#9E9E9E;padding:15px;font-size:18px;'>
+			<i class="fa fa-spinner"></i>&nbsp;&nbsp;正在加载内容
+			</div></div>
 			<div class="baike-content info fade-show">
 				<div class="content">
 				</div>
@@ -215,15 +214,12 @@
 				<center>
 					<div class="tags-contain">这篇百科包含
 					<b><label class="tags"></label></b>标签</div>
-					<div style="margin-top:5px;">创建者:&nbsp;<label class="creator"></label>&nbsp;|&nbsp;<b class="query" style="color:#1177BB;">申请质疑</b></div>
+					<div style="margin-top:5px;">创建者:&nbsp;<label class="creator"></label>&nbsp;|&nbsp;<label class="query" style="color:#1177BB;">申请质疑</label></div>
 				</center>
 			</div>
 			<div style="display: none;" class="edit fade-show">
-				<div style="float:left;width:50%;" class="app-button" id="edit">
-					编辑文字
-				</div>
-				<div class="app-button" id="changeImg">
-					更换图片
+				<div class="app-button" id="edit">
+					编辑百科
 				</div>
 			</div>
 		</div>
@@ -285,10 +281,8 @@
 				<div style="height:20px;"></div>
 				<textarea class="app-input w-content" placeholder="百科的内容" style="height:240px;"></textarea>
 				<div style="height:20px;"></div>
-			<div style="display:none;" class="imagesec">
-				<div style="background: #fff;text-align: center;">
-				<img class="lookat" style="width:100%;"></img>
-				</div>
+			<div style="display:none;text-align: center;" class="imagesec">
+				<img class="lookat" style="width:100%;background: #fff;"></img>
 				<div style="height:20px;"></div>
 			</div>
 				<div class="app-button" id="select">
@@ -328,6 +322,23 @@
 				<div style="height:20px;"></div>
 				<textarea class="app-input w-content" placeholder="百科的内容" style="height:240px;"></textarea>
 				<div style="height:20px;"></div>
+			<div style="display:none;text-align: center;" class="imagesec">
+				<img class="lookat" style="width:100%;background: #fff;"></img>
+				<div style="height:20px;"></div>
+			</div>
+				<div class="app-button" id="select">
+					<i class="fa fa-file-image-o fa-lg">
+						</i> &nbsp;&nbsp;选择图片
+				</div>
+				<div class="app-button" id="take">
+					<i class="fa fa-camera fa-lg">
+						</i> &nbsp;&nbsp;拍摄图片
+				</div>
+				<div class="app-button" id="clear">
+					<i class="fa fa-remove fa-lg">
+						</i> &nbsp;&nbsp;清空
+				</div>
+				<div style="height:20px;"></div>
 		</div>
 	</div>
 
@@ -338,51 +349,71 @@
 				返回
 			</div>
 			<div class="app-title">
-				我的中心
+				我的主页
 			</div>
-			<div class="app-button right" data-target="appInfo">
-				&nbsp;
-				<i class="fa fa-info fa-lg">
-					</i> &nbsp;
+			<div class="app-button right" data-target="setting">
+				<i class="fa fa-cog fa-lg">
+				</i>
 			</div>
 		</div>
 		<div class="app-content">
-			<div style="text-align: center;background: #fff;padding:15px;font-size:18px;">
-				<div style="font-size:30px;" class="myname">
+			<div style="text-align: center;background: #039BE5;color:#fff;padding:15px;padding-bottom:25px;font-size:24px;">
+				<div style="font-size:40px;" class="myname">
 				</div>
-				<i class="fa fa-envelope-o fa-lg"></i>&nbsp;
-				<label class="myemail">
-				</label>
-				<br>
-				<i class="fa fa-clock-o fa-lg"></i>&nbsp;
-				<label class="myregtime">
-				</label>
+				<label class="myemail"></label>
 			</div>
-			<div style="height:20px;"></div>
 			<div class="credit-coin">
 				<i class="fa fa-diamond fa-lg"></i>&nbsp;
 				<label class="mycoin">获取中...
 				</label>
 			</div>
+			<div style="color:#fff;background:#1177BB;text-align:center;font-size:18px;padding:10px;">
+				<i class="fa fa-arrow-down"></i>&nbsp;&nbsp;我创建的词条
+			</div>
+			<div class="postsList">
+				<div style="height:20px;"></div>
+				<div style="text-align:center;font-size:18px;padding:10px;"><i class="fa fa-spinner"></i>&nbsp;&nbsp;加载中...</div>
+			</div>
+			<div style="display:none;" class="app-button loadmore" id="loadmore">
+				<i class="fa fa-chevron-circle-down fa-lg"></i>&nbsp;&nbsp;加载更多
+			</div>
+		</div>
+	</div>
+	
+	<!-- 设置页面-->
+	<div class="app-page " data-page="setting">
+		<div class="app-topbar">
+			<div class="left app-button" data-back>
+				返回
+			</div>
+			<div class="app-title">
+				偏好设置
+			</div>
+		</div>
+		<div class="app-content">
 			<div style="height:20px;"></div>
 				<div class="app-button" id="changePwd">
 					<i class="fa fa-key fa-lg">
-						</i> &nbsp;&nbsp;更改密码
+						</i>&nbsp;&nbsp;更改密码
 				</div>
 				<div class="app-button" id="logout">
 					<i class="fa fa-sign-out fa-lg">
-						</i> &nbsp;&nbsp;登出账户
+						</i>&nbsp;&nbsp;登出账户
 				</div>
 			<div style="height:20px;"></div>
-				<div class="app-button" id="mybaike">
-					<i class="fa fa-code-fork fa-lg">
-					</i> &nbsp;&nbsp;我创建的词条
-				</div>
 				<div class="app-button" id="jiasu">
 					<i class="fa fa-cloud fa-lg">
-					</i> &nbsp;&nbsp;云加速 [<label class="speedStatus"></label>]
+					</i>&nbsp;&nbsp;云加速 [<label class="speedStatus"></label>]
 				</div>
-		</div>
+			<div style="height:20px;"></div>
+				<div class="app-button" data-target="about">
+					<i class="fa fa-users fa-lg">
+					</i>&nbsp;&nbsp;关于 Idea Leaper
+				</div>
+				<div class="app-button" data-target="appInfo">
+					<i class="fa fa-info fa-lg">
+					</i>&nbsp;&nbsp;开发信息
+				</div>
 	</div>
 
 
@@ -442,57 +473,34 @@
 		</div>
 	</div>
 </body>
-<script src="appjs/js/lib/zepto.js">
-</script>
-<script src="appjs/js/lib/clickable.js">
-</script>
-<script src="appjs/js/lib/scrollable.js">
-</script>
-<script src="appjs/js/lib/swapper.js">
-</script>
-<script src="appjs/js/app.js">
-</script>
-<script src="appjs/js/utils.js">
-</script>
-<script src="appjs/js/android-touch-fix.js">
-</script>
-<script src="appjs/js/dialog.js">
-</script>
-<script src="appjs/js/events.js">
-</script>
-<script src="appjs/js/transitions.js">
-</script>
-<script src="appjs/js/scroll-fix.js">
-</script>
-<script src="appjs/js/scroll.js">
-</script>
-<script src="appjs/js/pages.js">
-</script>
-<script src="appjs/js/stack.js">
-</script>
-<script src="appjs/js/navigation.js">
-</script>
-<script src="model/function.js">
-</script>
-<script src="model/controller.index.js">
-</script>
-<script src="model/controller.comment.js">
-</script>
-<script src="model/controller.view.js">
-</script>
-<script src="model/controller.user.js">
-</script>
-<script src="model/controller.post.js">
-</script>
-<script src="model/controller.edit.js">
-</script>
-<script src="model/controller.center.js">
-</script>
-<script src="model/controller.search.js">
-</script>
-<script src="model/controller.home.js">
-</script>
-<script src="model/init.js">
-</script>
+<script src="appjs/js/lib/zepto.js"></script>
+<script src="appjs/js/lib/clickable.js"></script>
+<script src="appjs/js/lib/scrollable.js"></script>
+<script src="appjs/js/lib/swapper.js"></script>
+
+<script src="appjs/js/app.js"></script>
+<script src="appjs/js/utils.js"></script>
+<script src="appjs/js/android-touch-fix.js"></script>
+<script src="appjs/js/dialog.js"></script>
+<script src="appjs/js/events.js"></script>
+<script src="appjs/js/transitions.js"></script>
+<script src="appjs/js/scroll-fix.js"></script>
+<script src="appjs/js/scroll.js"></script>
+<script src="appjs/js/pages.js"></script>
+<script src="appjs/js/stack.js"></script>
+<script src="appjs/js/navigation.js"></script>
+
+<script src="model/function.js"></script>
+<script src="model/controller.index.js"></script>
+<script src="model/controller.comment.js"></script>
+<script src="model/controller.view.js"></script>
+<script src="model/controller.user.js"></script>
+<script src="model/controller.post.js"></script>
+<script src="model/controller.edit.js"></script>
+<script src="model/controller.center.js"></script>
+<script src="model/controller.setting.js"></script>
+<script src="model/controller.search.js"></script>
+<script src="model/controller.home.js"></script>
+<script src="model/init.js"></script>
 
 </html>

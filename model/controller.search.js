@@ -1,6 +1,10 @@
 App.controller("search",
 function(page, argv) {
-	
+	$(page).find(".s-baike").removeClass("r");
+	$(page).find(".s-baike").addClass("y");
+	$(page).find(".s-tag").removeClass("y");
+	$(page).find(".s-tag").addClass("r");
+	searchTag=false;
 	$(page).find(".app-input").val(argv.text);
 	
 	function ref(p, mode, s) {
@@ -9,7 +13,8 @@ function(page, argv) {
 			p = 1
 		};
 		$(page).find(".w-text").text($(page).find(".app-input").val());
-		var w = plus.nativeUI.showWaiting("正在获取百科...");
+		//var w = plus.nativeUI.showWaiting("正在获取百科...");
+		$(page).find(".postsList").html("<div style='height:20px;'></div><div style='text-align:center;color:#9E9E9E;padding:15px;font-size:18px;'><i class='fa fa-spinner'></i>&nbsp;&nbsp;正在加载搜索结果</div>");
 		if(searchTag==false){
 			var useurl='http://' + localStorage.service 
 			+ '/api/get_search_results/?include=custom_fields,title,excerpt&search=' 
@@ -103,10 +108,11 @@ function(page, argv) {
 				if (spN < data.pages) {
 					$(page).find(".loadmore").show();
 				}
-				w.close();
+				//w.close();
 			},
 			error: function(xhr, type) {
-				w.close();
+				//w.close();
+				$(page).find(".postsList").html("<div style='height:20px;'></div><div style='text-align:center;color:#9E9E9E;padding:15px;font-size:18px;'>加载失败, 请重新打开本页面</div>");
 				plus.nativeUI.toast("网络错误");
 			}
 		});
@@ -120,14 +126,14 @@ function(page, argv) {
 			ref(spN + 1, 1,argv.text);
 			
 		/* 注册百科\标签切换事件 */
-		}else if(this.id=="baike"){
+		}else if(this.id=="baike"&&searchTag==true){
 			$(page).find(".s-baike").removeClass("r");
 			$(page).find(".s-baike").addClass("y");
 			$(page).find(".s-tag").removeClass("y");
 			$(page).find(".s-tag").addClass("r");
 			searchTag=false;
 			ref(1,0,$(page).find(".app-input").val());
-		}else if(this.id=="tag"){
+		}else if(this.id=="tag"&&searchTag==false){
 			$(page).find(".s-baike").removeClass("y");
 			$(page).find(".s-baike").addClass("r");
 			$(page).find(".s-tag").removeClass("r");
@@ -149,7 +155,7 @@ function(page, argv) {
 	
 	
 	/* 强制刷新以及缓存控制 */
-	$(page).on('appLayout',
+	$(page).on('appShow',
 	function() {
 		/* 如果未加载则刷新 */
 		if (!search_loaded) {

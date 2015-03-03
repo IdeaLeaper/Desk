@@ -6,23 +6,21 @@ function(page) {
 	$(page).find(".app-content").on("touchmove",function(e){
 		if(e.touches[0].pageY>el&&this.scrollTop==0){
 			$(page).find(".ref").show();
-			ref();
-			setTimeout(function(){
-				$(page).find(".ref").hide();
-			},500);
-			
+			ref(1,0,true);
 		}
 	});
 	$(page).find(".app-content").on("touchstart",function(e){
 		el=e.touches[0].pageY;
 	});
 
-	function ref(p, mode) {
+	function ref(p, mode, src) {
 		/* 处理没有指定页码的情况 */
 		if (!p) {
 			p = 1
 		};
-		var w = plus.nativeUI.showWaiting("正在获取百科...");
+		if(!src){
+			var w = plus.nativeUI.showWaiting("正在获取百科...");
+		}
 		$.ajax({
 			type: 'GET',
 			url: 'http://' + localStorage.service + '/api/get_recent_posts/?include=custom_fields,title,excerpt&page=' + p + "&china=" + localStorage.china,
@@ -78,6 +76,7 @@ function(page) {
 				}
 
 				/* 注册列表点击事件 */
+				$(page).find('.listClick').clickable();
 				$(page).find('.listClick').on("click",
 				function() {
 					App.load("view", {
@@ -95,10 +94,10 @@ function(page) {
 				if (pN < data.pages) {
 					$(page).find(".loadmore").show();
 				}
-				w.close();
+				if(!src){w.close();}else{$(page).find(".ref").hide();}
 			},
 			error: function(xhr, type) {
-				w.close();
+				if(!src){w.close();}else{$(page).find(".ref").hide();}
 				plus.nativeUI.toast("网络错误");
 			}
 		});

@@ -4,24 +4,17 @@ function(page, argv) {
 	
 	/* 刷新百科显示 */
 	function ref(){
-		var w = plus.nativeUI.showWaiting("正在获取内容...");
+		//var w = plus.nativeUI.showWaiting("正在获取内容...");
 		$(page).find('.app-title').text(argv.obj.posts[argv.id].title);
-		if (argv.obj.posts[argv.id]["custom_fields"].image) {
-			var iturl = argv.obj.posts[argv.id]["custom_fields"].image[0]+"?imageView2/1/w/400/h/400";
-			$(page).find('.image').attr('src', iturl);
-			$(page).find('.image').on("load",
-			function() {
-				$(page).find('.imagesec').show();
-			});
-		}
 		$.ajax({
 			type: 'GET',
-			url: 'http://' + localStorage.service + '/api/get_post/?include=content,author,tags&post_id=' + argv.obj.posts[argv.id].id,
+			url: 'http://' + localStorage.service + '/api/get_post/?include=custom_fields,content,author,tags&post_id=' + argv.obj.posts[argv.id].id,
 			dataType: 'json',
 			cache: false,
 			timeout: 20000,
 			context: $('body'),
 			success: function(data) {
+				$(page).find('.loading').hide();
 				fullData=data;
 				$(page).find('.content').html(data.post.content);
 				$(page).find('.tags').empty();
@@ -31,15 +24,24 @@ function(page, argv) {
 				if(data.post.tags.length==0){
 					$(page).find('.tags-contain').text("这篇百科没有标签");
 				}
+				if (data.post["custom_fields"].image) {
+					var iturl = data.post["custom_fields"].image[0]+"?imageView2/1/w/400/h/400";
+					$(page).find('.image').attr('src',iturl);
+					$(page).find('.image').on("load",
+					function() {
+						$(page).find('.imagesec').show();
+					});
+				}
 				$(page).find('.creator').text(data.post.author.name);
 				$(page).find('.info').show();
 				$(page).find(".edit").show();
 				view_loaded=true;
-				w.close();
+				//w.close();
 			},
 			error: function(xhr, type) {
-				w.close();
+				//w.close();
 				plus.nativeUI.toast("网络错误");
+				$(page).find('.load-text').text("加载失败, 请重新打开本页面");
 			}
 		});
 	}
@@ -53,14 +55,41 @@ function(page, argv) {
 				obj: argv.obj
 			});
 		}else if(this.id == "edit"){
-			App.load("edit", {
-				content:$(page).find('.content').text(),
-				title:$(page).find('.app-title').text(),
-				tags:fullData.post.tags,
-				id: fullData.post.id
-			});
-		}else if(this.id == "changeImg"){
-			devnotice();
+			if(localStorage.username == fullData.post.author.name){
+				App.load("edit", {
+					content:$(page).find('.content').text(),
+					title:$(page).find('.app-title').text(),
+					tags:fullData.post.tags,
+					id: fullData.post.id
+				});
+			}else{
+				var w = plus.nativeUI.showWaiting("正在检测权限");
+				$.ajax({
+					type: 'GET',
+					url: 'http://' + localStorage.service + '/api/user/get_user_meta/?cookie='+localStorage.cookie+"&meta_key=d_user_level",
+					dataType: 'json',
+					cache: false,
+					timeout: 20000,
+					context: $('body'),
+					success: function(data) {
+						w.close();
+						if(data["d_user_level"][0]>=7){
+							App.load("edit", {
+								content:$(page).find('.content').text(),
+								title:$(page).find('.app-title').text(),
+								tags:fullData.post.tags,
+								id: fullData.post.id
+							});
+						}else{
+							plus.nativeUI.toast("您没有编辑权限");
+						}
+					},
+					error: function(xhr, type) {
+						w.close();
+						plus.nativeUI.toast("网络错误");
+					}
+				});
+			}
 		}
 	});
 	
