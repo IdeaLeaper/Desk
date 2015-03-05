@@ -18,11 +18,13 @@ function(page, argv) {
 				fullData=data;
 				$(page).find('.content').html(data.post.content);
 				$(page).find('.tags').empty();
-				for(var i=0;i<=data.post.tags.length-1;i++){
-					$(page).find('.tags').append(without(data.post.tags[i].title)+"&nbsp;");
-				}
 				if(data.post.tags.length==0){
 					$(page).find('.tags-contain').text("这篇百科没有标签");
+				}else{
+					$(page).find(".tags-contain").html('这篇百科包含&nbsp;<b><label class="tags"></label></b>标签');
+				}
+				for(var i=0;i<=data.post.tags.length-1;i++){
+					$(page).find('.tags').append(without(data.post.tags[i].title)+"&nbsp;");
 				}
 				if (data.post["custom_fields"].image) {
 					var iturl = data.post["custom_fields"].image[0]+"?imageView2/1/w/400/h/400";

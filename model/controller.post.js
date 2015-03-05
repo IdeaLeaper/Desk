@@ -33,7 +33,7 @@ function(page) {
 			if ($(page).find(".w-title").val().trim() == "" || $(page).find(".w-content").val().trim() == "") {
 				plus.nativeUI.toast("缺少必填项");
 				return 0;
-			}else if($(page).find(".w-title").val().trim().length>10){
+			}else if($(page).find(".w-title").val().trim().gblen()>20){
 				plus.nativeUI.toast("小百科标题太长啦!");
 				return 0;
 			}
@@ -54,7 +54,7 @@ function(page) {
 					} else {
 						w.close();
 						plus.nativeUI.toast("发布失败");
-						alert("Upload failed: " + status);
+						alert("Network Error: " + status);
 					}
 			});
 			
@@ -74,7 +74,7 @@ function(page) {
 					} else {
 						w.close();
 						plus.nativeUI.toast("发布失败");
-						alert("Upload failed: " + status);
+						alert("Network Error: " + status);
 					}
 			});
 			
