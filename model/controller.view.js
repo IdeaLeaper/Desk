@@ -26,11 +26,15 @@ function(page, argv) {
 				}
 				if (data.post["custom_fields"].image) {
 					var iturl = data.post["custom_fields"].image[0]+"?imageView2/1/w/400/h/400";
+					$(page).find('.image').removeAttr('src');
 					$(page).find('.image').attr('src',iturl);
 					$(page).find('.image').on("load",
 					function() {
 						$(page).find('.imagesec').show();
 					});
+					if($(page).find('.image').complete){
+						$(page).find('.imagesec').show();
+					}
 				}
 				$(page).find('.creator').text(data.post.author.name);
 				$(page).find('.info').show();
@@ -100,9 +104,9 @@ function(page, argv) {
 	/* 注册图片点击事件 */
 	$(page).find(".image").on("click",
 	function() {
-		if(argv.obj.posts[argv.id]["custom_fields"].image){
+		if(fullData.post["custom_fields"].image){
 			App.load('viewer', {
-				url: argv.obj.posts[argv.id]["custom_fields"].image[0]+"?imageView2/4/w/600/h/800"
+				url: fullData.post["custom_fields"].image[0]+"?imageView2/4/w/600/h/800"
 			});
 		}
 	})
@@ -113,6 +117,10 @@ function(page, argv) {
 	function() {
 		/* 如果未加载则刷新 */
 		if (!view_loaded) {
+			$(page).find('.info').hide();
+			$(page).find(".edit").hide();
+			$(page).find(".imagesec").hide();
+			$(page).find('.loading').show();
 			ref();
 		}
 	});

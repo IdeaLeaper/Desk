@@ -39,8 +39,13 @@ hr{
 }
 
 .ref{
-	background:#2196F3;color:#fff;text-align:center;padding-top:4px;display: none;
-	height:26px;
+	background:#2196F3;
+	color:#fff;
+	text-align:center;
+	padding-top:4px;
+	height:0px;
+	display: none;
+	-webkit-transition: height 0.2s
 }
 
 .card{
@@ -61,7 +66,9 @@ hr{
 }
 
 .card img{
-      width: 100%;
+    width: 100%;
+    border:none;
+	outline:none;
 }
 
 .card .card-content{
@@ -89,7 +96,11 @@ hr{
 }
 
 .only-title-card{
-	background:#fff;padding:5px;font-size:24px;text-align:center;margin:15px;
+	background:#fff;
+	padding:10px;
+	font-size:24px;
+	text-align:center;
+	margin:15px;
 	-webkit-box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
 }
 
@@ -112,27 +123,45 @@ hr{
 }
 
 .baike-content{
-	padding:15px;background:#fff;font-size:18px;display: none;
+	padding:15px;
+	background:#fff;
+	font-size:18px;
+	display: none;
 }
 
 .baike-info{
-	padding:15px;background:#E0E0E0;color:#000;font-size:18px;display: none;
+	padding:15px;
+	background:#E0E0E0;
+	color:#000;
+	font-size:18px;
+	display: none;
 }
 
 .baike-img{
-	height:300px;overflow:hidden;display: none;
+	height:300px;
+	overflow:hidden;
+	display: none;
 }
 
 .baike-img img{
 	width:100%;
+	border:none;
+	outline:none;
 }
 
 .credit-coin{
-	text-align: center;;background: #0288D1;color:#fff;padding:15px;font-size:18px;
+	text-align: center;
+	background: #0288D1;
+	color:#fff;
+	padding:15px;
+	padding-bottom:25px;
+	font-size:18px;
 }
 
 .w-content{
-	padding:15px;background: #fff;font-size:18px;
+	padding:15px;
+	background: #fff;
+	font-size:18px;
 }
 
 .app-content .app-button.r{

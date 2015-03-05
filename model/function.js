@@ -4,8 +4,7 @@ var pN=0;
 var spN=0;
 var loaded=false;
 var view_loaded=false;
-var search_loaded=false;
-var center_loaded=false;
+var loadingmore=false;
 var searchTag=false;
 
 Date.prototype.format = function(partten)

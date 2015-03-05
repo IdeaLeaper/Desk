@@ -1,6 +1,35 @@
 App.controller('center',
 function(page) {
 	$(page).find(".myname").text(localStorage.username);
+	if (!localStorage.useremail) {
+		var w = plus.nativeUI.showWaiting("正在获取信息...");
+		$.ajax({
+			type: 'GET',
+			url: 'http://' + localStorage.service + '/api/user/get_currentuserinfo/?cookie=' + localStorage.cookie,
+			dataType: 'json',
+			timeout: 20000,
+			cache:false,
+			context: $('body'),
+			success: function(data) {
+				w.close();
+				$(page).find(".myemail").text(data.user.email);
+				localStorage["useremail"] = data.user.email;
+			},
+			error: function(xhr, type) {
+				w.close();
+				plus.nativeUI.toast("网络错误");
+			}
+		});
+		
+	} else {
+		$(page).find(".myemail").text(localStorage.useremail);
+	}
+	
+	loadcoin();
+	ref();
+	
+	
+	
 	if(localStorage.service=="skypt.cn"){
 		$(page).find(".speedStatus").text("中国大陆节点");
 	}else if(localStorage.service=="desk.cdn.ileaper.com"){
@@ -78,9 +107,6 @@ function(page) {
 						obj: searcharr
 					});
 				});
-				
-				/* 设置状态为已经加载 */
-				center_loaded = true;
 
 				/* 加载更多处理 */
 				spN = p;
@@ -94,45 +120,4 @@ function(page) {
 			}
 		});
 	}
-	
-	
-	if (!localStorage.useremail) {
-		var w = plus.nativeUI.showWaiting("正在获取信息...");
-		$.ajax({
-			type: 'GET',
-			url: 'http://' + localStorage.service + '/api/user/get_currentuserinfo/?cookie=' + localStorage.cookie,
-			dataType: 'json',
-			timeout: 20000,
-			cache:false,
-			context: $('body'),
-			success: function(data) {
-				w.close();
-				$(page).find(".myemail").text(data.user.email);
-				localStorage["useremail"] = data.user.email;
-			},
-			error: function(xhr, type) {
-				w.close();
-				plus.nativeUI.toast("网络错误");
-			}
-		});
-		
-	} else {
-		$(page).find(".myemail").text(localStorage.useremail);
-	}
-
-
-		/* 强制刷新以及缓存控制 */
-	$(page).on('appShow',
-	function() {
-		/* 如果未加载则刷新 */
-		if (!center_loaded) {
-			loadcoin();
-			ref();
-		}
-	});
-	
-	$(page).on('appDestroy',
-	function() {
-		center_loaded=false;
-	});
 });

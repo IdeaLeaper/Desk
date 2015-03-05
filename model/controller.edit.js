@@ -60,10 +60,7 @@ function(page,argv) {
 							var jsonObj=JSON.parse(t.responseText);
 							w.close();
 							if(jsonObj.status=="ok"){
-								loaded=false;
 								view_loaded=false;
-								search_loaded=false;
-								center_loaded=false;
 								App.back();
 							}else{
 								plus.nativeUI.toast("您没有编辑权限");

@@ -6,15 +6,21 @@ function(page, argv) {
 	$(page).find(".s-tag").addClass("r");
 	searchTag=false;
 	$(page).find(".app-input").val(argv.text);
+	ref(1,0,$(page).find(".app-input").val());
 	
-	function ref(p, mode, s) {
+	function ref(p, mode, s,src) {
 		/* 处理没有指定页码的情况 */
 		if (!p) {
 			p = 1
 		};
 		$(page).find(".w-text").text($(page).find(".app-input").val());
 		//var w = plus.nativeUI.showWaiting("正在获取百科...");
-		$(page).find(".postsList").html("<div style='height:20px;'></div><div style='text-align:center;color:#9E9E9E;padding:15px;font-size:18px;'><i class='fa fa-spinner'></i>&nbsp;&nbsp;正在加载搜索结果</div>");
+		if(!src){
+			$(page).find(".postsList").html("<div style='height:20px;'></div><div style='text-align:center;color:#9E9E9E;padding:15px;font-size:18px;'><i class='fa fa-spinner'></i>&nbsp;&nbsp;正在加载搜索结果</div>");
+		}else if(src==1){
+			$(page).find(".loadmore").html('<i class="fa fa-spinner fa-lg"></i>&nbsp;&nbsp;正在加载');
+			loadingmore=true;
+		}
 		if(searchTag==false){
 			var useurl='http://' + localStorage.service 
 			+ '/api/get_search_results/?include=custom_fields,title,excerpt&search=' 
@@ -97,9 +103,6 @@ function(page, argv) {
 						obj: searcharr
 					});
 				});
-				
-				/* 设置状态为已经加载 */
-				search_loaded = true;
 
 				
 				/* 加载更多处理 */
@@ -108,11 +111,20 @@ function(page, argv) {
 				if (spN < data.pages) {
 					$(page).find(".loadmore").show();
 				}
-				//w.close();
+				
+				if(src==1){
+					$(page).find(".loadmore").html('<i class="fa fa-chevron-circle-down fa-lg"></i>&nbsp;&nbsp;加载更多');
+					loadingmore=false;
+				}
 			},
 			error: function(xhr, type) {
 				//w.close();
-				$(page).find(".postsList").html("<div style='height:20px;'></div><div style='text-align:center;color:#9E9E9E;padding:15px;font-size:18px;'>加载失败, 请重新打开本页面</div>");
+				if(!src){
+					$(page).find(".postsList").html("<div style='height:20px;'></div><div style='text-align:center;color:#9E9E9E;padding:15px;font-size:18px;'>加载失败, 请重新打开本页面</div>");
+				}else if(src==1){
+					$(page).find(".loadmore").html('<i class="fa fa-chevron-circle-down fa-lg"></i>&nbsp;&nbsp;加载更多');
+					loadingmore=false;
+				}
 				plus.nativeUI.toast("网络错误");
 			}
 		});
@@ -122,8 +134,8 @@ function(page, argv) {
 	$(page).find('.app-button').on("click",
 	function() {
 		/* 注册加载更多点击事件 */
-		if (this.id == "loadmore") {
-			ref(spN + 1, 1,argv.text);
+		if (this.id == "loadmore"&&loadingmore==false) {
+			ref(spN + 1, 1,argv.text,1);
 			
 		/* 注册百科\标签切换事件 */
 		}else if(this.id=="baike"&&searchTag==true){
@@ -151,21 +163,6 @@ function(page, argv) {
 				ref(1,0,$(page).find(".app-input").val());
 			}
 		}
-	});
-	
-	
-	/* 强制刷新以及缓存控制 */
-	$(page).on('appShow',
-	function() {
-		/* 如果未加载则刷新 */
-		if (!search_loaded) {
-			ref(1,0,$(page).find(".app-input").val());
-		}
-	});
-	
-	$(page).on('appDestroy',
-	function() {
-		search_loaded=false;
 	});
 
 });

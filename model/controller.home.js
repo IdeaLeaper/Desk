@@ -6,7 +6,8 @@ function(page) {
 	$(page).find(".app-content").on("touchmove",function(e){
 		if(e.touches[0].pageY>el&&this.scrollTop==0){
 			$(page).find(".ref").show();
-			ref(1,0,true);
+			$(page).find(".ref").height("26px");
+			ref(1,0,2);
 		}
 	});
 	$(page).find(".app-content").on("touchstart",function(e){
@@ -20,6 +21,9 @@ function(page) {
 		};
 		if(!src){
 			var w = plus.nativeUI.showWaiting("正在获取百科...");
+		}else if(src==1){
+			$(page).find(".loadmore").html('<i class="fa fa-spinner fa-lg"></i>&nbsp;&nbsp;正在加载');
+			loadingmore=true;
 		}
 		$.ajax({
 			type: 'GET',
@@ -94,10 +98,31 @@ function(page) {
 				if (pN < data.pages) {
 					$(page).find(".loadmore").show();
 				}
-				if(!src){w.close();}else{$(page).find(".ref").hide();}
+				
+				if(!src){
+					w.close();
+				}else if(src==1){
+					$(page).find(".loadmore").html('<i class="fa fa-chevron-circle-down fa-lg"></i>&nbsp;&nbsp;加载更多');
+					loadingmore=false;
+				}else if(src==2){
+					$(page).find(".ref").height("0px");
+					setTimeout(function(){
+						$(page).find(".ref").hide();
+					},200);
+				}
 			},
 			error: function(xhr, type) {
-				if(!src){w.close();}else{$(page).find(".ref").hide();}
+				if(!src){
+					w.close();
+				}else if(src==1){
+					$(page).find(".loadmore").html('<i class="fa fa-chevron-circle-down fa-lg"></i>&nbsp;&nbsp;加载更多');
+					loadingmore=false;
+				}else if(src==2){
+					$(page).find(".ref").height("0px");
+					setTimeout(function(){
+						$(page).find(".ref").hide();
+					},200);
+				}
 				plus.nativeUI.toast("网络错误");
 			}
 		});
@@ -116,8 +141,8 @@ function(page) {
 	/* 注册按钮点击事件 */
 	$(page).find('.app-button').on("click",
 	function() {
-		 if (this.id == "loadmore") {
-			ref(pN + 1, 1);
+		 if (this.id == "loadmore"&&loadingmore==false) {
+			ref(pN + 1, 1 ,1);
 		}
 	});
 

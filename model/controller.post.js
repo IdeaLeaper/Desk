@@ -33,6 +33,9 @@ function(page) {
 			if ($(page).find(".w-title").val().trim() == "" || $(page).find(".w-content").val().trim() == "") {
 				plus.nativeUI.toast("缺少必填项");
 				return 0;
+			}else if($(page).find(".w-title").val().trim().length>10){
+				plus.nativeUI.toast("小百科标题太长啦!");
+				return 0;
 			}
 			
 			var w = plus.nativeUI.showWaiting("正在准备...");
@@ -46,7 +49,6 @@ function(page) {
 				function(t, status) {
 					if (status == 200) {
 						w.close();
-						console.log("Upload: " + t.responseText);
 						loaded=false;
 						App.back("home");
 					} else {
