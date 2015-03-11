@@ -7,6 +7,7 @@ function(page) {
 		if(e.touches[0].pageY>el&&this.scrollTop==0){
 			$(page).find(".ref").show();
 			$(page).find(".ref").height("26px");
+			$(page).find(".refok").height("26px");
 			ref(1,0,2);
 		}
 	});
@@ -105,10 +106,13 @@ function(page) {
 					$(page).find(".loadmore").html('<i class="fa fa-chevron-circle-down fa-lg"></i>&nbsp;&nbsp;加载更多');
 					loadingmore=false;
 				}else if(src==2){
+					$(page).find(".ref").hide();
 					$(page).find(".ref").height("0px");
+					$(page).find(".refok").show();
 					setTimeout(function(){
-						$(page).find(".ref").hide();
-					},200);
+						$(page).find(".refok").height("0px");
+						setTimeout(function(){$(page).find(".refok").hide();},200);
+					},800);
 				}
 			},
 			error: function(xhr, type) {

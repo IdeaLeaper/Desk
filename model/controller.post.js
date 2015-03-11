@@ -14,8 +14,8 @@ function(page) {
 				filename: "_doc/gallery/",
 				index: 1
 			});
-
-		} else if (this.id == "select") {
+			
+		} else if (this.id == "select") { 
 			plus.gallery.pick(function(path) {
 				$(page).find(".lookat").attr("src", path);
 				$(page).find(".imagesec").show();
@@ -24,7 +24,7 @@ function(page) {
 			{
 				filter: "image"
 			});
-
+			
 		} else if (this.id == "clear") {
 			$(page).find(".lookat").removeAttr("src");
 			$(page).find(".imagesec").hide();

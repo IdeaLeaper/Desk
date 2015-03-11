@@ -96,6 +96,7 @@ function(page, argv) {
 				}
 				
 				/* 注册列表点击事件 */
+				$(page).find('.listClick').clickable();
 				$(page).find('.listClick').on("click",
 				function() {
 					App.load("view", {

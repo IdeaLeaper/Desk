@@ -48,6 +48,16 @@ hr{
 	-webkit-transition: height 0.2s
 }
 
+.refok{
+	background:#009688;
+	color:#fff;
+	text-align:center;
+	padding-top:4px;
+	height:26px;
+	display: none;
+	-webkit-transition: height 0.2s
+}
+
 .card{
 	position: relative;
   	overflow: hidden;
@@ -98,15 +108,17 @@ hr{
 .only-title-card{
 	background:#fff;
 	padding:10px;
-	font-size:24px;
+	font-size:20px;
 	text-align:center;
 	margin:15px;
 	-webkit-box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+	color:#212121;
 }
 
 
 .comments{
-	padding:15px;background:#fff;
+	padding:15px;
+	background:rgba(255,255,255,0.3);
 	border-style: solid;
 	border-width:0px;
 	border-bottom-width: 1px;
@@ -115,7 +127,7 @@ hr{
 
 .comments .comments-title{
 	color:#1177BB;
-	font-size:22px;
+	font-size:20px;
 }
 
 .comments .comments-content{
@@ -171,7 +183,9 @@ hr{
   	border-width: 0px;
   	border-color:#BDBDBD;
   	border-bottom-width:3px;
-  	font-size:20px;
+  	font-size:19px;
+  	height:36px;
+  	line-height: 36px;
 }
 .app-content .app-button.r.active {
 	background-color: #E0E0E0;
@@ -184,7 +198,9 @@ hr{
   	border-width: 0px;
   	border-color:#00838F;
   	border-bottom-width:3px;
-  	font-size:20px;
+  	font-size:19px;
+  	height:36px;
+  	line-height: 36px;
 }
 .app-content .app-button.y.active {
 	background-color: #E0E0E0;

@@ -100,7 +100,34 @@ function(page, argv) {
 	});
 	
 	$(page).find(".query").on("click",function(){
-		devnotice();
+		var content=prompt("请输入要质疑的内容");
+		if(content.trim()!=""){
+			var w = plus.nativeUI.showWaiting("正在提交质疑");
+			$.ajax({
+					type: 'GET',
+					url: 'http://' + localStorage.service + '/query.php?user='+encodeURIComponent(localStorage.username)+"&title="+encodeURIComponent($(page).find('.app-title').text())+"&content="+encodeURIComponent(content),
+					dataType: 'text',
+					cache: false,
+					timeout: 20000,
+					context: $('body'),
+					success: function(data) {
+						w.close();
+						if(data=="ok"){
+							App.dialog({
+									title: '申请质疑成功',
+									text: '您的质疑已经提交, 我们将在7日内进行处理',
+									okButton: '好滴'
+							});
+						}else{
+							plus.nativeUI.toast("提交质疑失败");
+						}
+					},
+					error: function(xhr, type) {
+						w.close();
+						plus.nativeUI.toast("网络错误");
+					}
+			});
+		}
 	});
 
 	/* 注册图片点击事件 */

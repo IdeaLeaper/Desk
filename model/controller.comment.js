@@ -18,9 +18,9 @@ function(page, argv) {
 					for (var i = 0; i <= data.post.comments.length - 1; i++) {
 						compound += "<div class='comments' id=" 
 						+ i 
-						+ "><div class='comments-title'>" 
+						+ "><b class='comments-title'>" 
 						+ without(data.post.comments[i].name) 
-						+ ":</div><div class='comments-content'>"
+						+ "</b><div class='comments-content'>"
 						+ data.post.comments[i].content 
 						+ "</div></div>";
 					}
@@ -46,13 +46,12 @@ function(page, argv) {
 				var w = plus.nativeUI.showWaiting("正在发布评论...");
 				$.ajax({
 					type: 'POST',
-					url: 'http://' + localStorage.service + '/api/submit_comment/',
+					url: 'http://' + localStorage.service + '/api/user/post_comment/',
 					data: {
 						post_id: argv.obj.posts[argv.id].id,
 						content: wcontent,
-						name: "auto",
-						email: "auto@auto.com",
-						cookie: localStorage.cookie
+						cookie: localStorage.cookie,
+						comment_status:1
 					},
 					dataType: 'json',
 					timeout: 20000,
@@ -65,6 +64,7 @@ function(page, argv) {
 							plus.nativeUI.toast("发布成功");
 							ref();
 						} else {
+							console.log(JSON.stringify(data));
 							plus.nativeUI.toast("发布失败");
 						}
 					},

@@ -45,8 +45,6 @@ function(page) {
 						}
 					});
 				}
-		}else if(this.id == "changePwd"||this.id=="mybaike"){
-			devnotice();
 		}
 	});
 });
